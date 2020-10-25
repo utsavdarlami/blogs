@@ -15,6 +15,6 @@ Some fun facts about the setup of this project include:
 * Theme [lanyon](https://github.com/poole/lanyon)
 * Developed on GitHub and hosted for free on [GitHub Pages](https://pages.github.com)
 
-Have questions or suggestions? Feel free to [open an issue on GitHub](https://github.com/utsavdarlami/utsavdarlami.github.io/issues/new) or send me mail at utsavdarlami17@gmail.com.
+Have questions or suggestions? Feel free to [open an issue on GitHub](https://github.com/utsavdarlami/blogs/issues/new) or send me an email at utsavdarlami17@gmail.com.
 
 Thanks for reading!
