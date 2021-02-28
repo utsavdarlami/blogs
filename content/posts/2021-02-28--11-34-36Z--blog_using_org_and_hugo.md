@@ -18,14 +18,14 @@ draft = false
 ---
 
 I have made a base site using hugo static generator.
-The post are written using the org-mode from emacs. Then the plugin \`[ox-hugo](https://ox-hugo.scripter.co/)\` converts the org file to markdown and places it to the posts folder of the hugo site.
-i have also used roam capture template so that the placeholder for tags and categories are perdefined in new org files.
+The post are written using org-mode from emacs. The plugin \`[ox-hugo](https://ox-hugo.scripter.co/)\` converts the org file to markdown and places it to the posts folder of the hugo site folder.
+I have also used roam capture template so that the placeholder for tags and categories are perdefined in new org files.
 The placeholder includes roam\_tags, hugo\_tags, hugo\_categories, HUGO\_BASE\_DIR path
 
 
 ## Things i need to fix {#things-i-need-to-fix}
 
--   there is problem in site rendering when a org file is linked to a org file which has not been exported to markdown. I might not export all my notes to markdown because they might be publishable.
+-   There is problem in site rendering when a org file is linked to a org file which has not been exported to markdown. I might not export all my notes to markdown because they might be publishable.
 
 -   Add biblography
 
@@ -34,4 +34,4 @@ The placeholder includes roam\_tags, hugo\_tags, hugo\_categories, HUGO\_BASE\_D
 
 -   <https://seds.nl/>
 -   has biblography
--   table of content in right
+-   table of content in right **I have Added it but need to make fix the design**
