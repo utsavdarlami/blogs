@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode | default "en-us" }}">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{{ .Title }}</title>
+    {{ with .Site.Params.description }}<meta name="description" content="{{ . }}">{{ end }}
+    {{ with .Site.Params.author }}<meta name="author" content="{{ . }}">{{ end }}
+    <link rel="stylesheet" href="{{ "css/style.css" | relURL }}"/>
+    <link rel="stylesheet" href="{{ "css/syntax.css" | relURL }}"/>
+    <link rel="stylesheet" href="{{ "css/toc.css" | relURL }}"/>
+
+    <link rel="stylesheet" href="{{ "katex/katex.min.css" | relURL }}"/>
+    <script defer src="{{ "katex/katex.min.js" | relURL }}"></script>
+    <script defer src="{{ "katex/contrib/auto-render.min.js" | relURL }}" onload="renderMathInElement(document.body);"></script>
+
+    <!-- <script src="{{ "js/mathjax-config.js" | absURL }}"></script> -->
+    <!-- Use MathJax 3 for faster loading -->
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script> -->
+
+    {{ with .OutputFormats.Get "RSS" -}}
+    {{ printf `<link rel="%s" type="%s" href="%s" title="%s">` .Rel .MediaType.Type .RelPermalink $.Site.Title | safeHTML }}
+    {{- end }}
+  </head>
+  <body>
+    {{ partial "header" . }}
+
+    {{ block "main" . }}{{ end }}
+
+    {{ partial "footer" . }}
+
+  </body>
+</html>

@@ -1,0 +1,62 @@
++++
+title = "image_segmentation"
+author = ["felladog"]
+date = 2021-02-24T16:16:00+05:45
+tags = ["image"]
+draft = false
++++
+
+---
+
+-   referencees :
+-   questions :
+
+---
+
+
+## Using Deep Learning {#using-deep-learning}
+
+
+### UNET {#unet}
+
+-
+
+
+## Image Segmentation Loss/ Evaluation Method {#image-segmentation-loss-evaluation-method}
+
+-   Problem with other common metrics
+-   We need metrics that target pixels in foreground
+
+
+### Intersection over union {#intersection-over-union}
+
+-   Overall accuracy is not a good metric for semantic segmentation, especially for imbalanced dataset
+-   IOU = \\(\frac{Intersection}{Union}\\)
+
+    = \\(\frac{\sum{\hat{y}\*y}} {\sum{\hat{y} + y - \hat{y} \* y}}\\)
+
+
+### [Dice Score]({{< relref "20210224162319-ml_evaluations_score" >}}) {#dice-score--20210224162319-ml-evaluations-score-dot-md}
+
+-   Easy to differentiate
+-   For Image = \\(\frac{2\*\sum{\hat{y}\*y}} {\sum{\hat{y} + y}}\\)
+-   priortise both precision and recall equally
+-   Loss = 1 - Dice
+
+
+## Carvana Log {#carvana-log}
+
+-   Fixed the bit mask and operation while passing the tensor
+-   The dice score on whole training dataset was calculated, 0.67 was score obtained
+
+
+### TODO {#todo}
+
+
+### <span class="org-todo todo TODO">TODO</span> Add dice loss also {#add-dice-loss-also}
+
+
+### <span class="org-todo done DONE">DONE</span> Calculate the RLE MAsk and check with csv's value {#calculate-the-rle-mask-and-check-with-csv-s-value}
+
+
+### <span class="org-todo todo TODO">TODO</span> Create submission {#create-submission}

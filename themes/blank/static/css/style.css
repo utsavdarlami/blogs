@@ -1,0 +1,101 @@
+@font-face {
+    font-family: 'Recursive';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('Recursive400.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'Recursive';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('Recursive700.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('JetBrainsMono-Regular.woff2') format('woff2'),
+         url('JetBrainsMono-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+html {
+    min-width: 20em;
+    max-width: 84ch;
+    padding: 2ch;
+    margin: auto;
+}
+
+body {
+    font-family: 'Recursive', 'Liberation Sans', Arial, sans-serif;
+    line-height: 1.5;
+    background: #282828;
+    color:      #ebdbb2;
+}
+
+header {
+    margin-bottom: 1.25rem;
+}
+
+h1, h2 {
+    font-family: 'Recursive', 'Liberation Sans', Arial, sans-serif;
+    font-size: 1.75em;
+    margin-bottom: .25rem;
+}
+
+code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9em;
+}
+
+pre {
+    font-family: 'JetBrains Mono', monospace;
+    overflow-x: auto;
+    padding: 0.5ch;
+    border-radius: 10px;
+    border: 2px solid #d79921;
+    padding: 10px;
+    scrollbar-width: none;
+    font-size: 1.0em;
+}
+
+pre::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+#fn {
+    font-size: 85%;
+}
+
+::selection {
+    background: #d3869b;
+}
+
+a, a:visited {
+    text-decoration: none;
+    color: #d79921;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+#menu ul {
+    list-style: none;
+}
+
+#menu li {
+    display: inline;
+}
+
+hr {
+    border-top: 1px solid  #d79921;
+    margin-top: 2rem;
+}
