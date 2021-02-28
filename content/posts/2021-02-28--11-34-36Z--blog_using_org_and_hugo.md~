@@ -25,7 +25,7 @@ The placeholder includes roam\_tags, hugo\_tags, hugo\_categories, HUGO\_BASE\_D
 
 ## Things i need to fix {#things-i-need-to-fix}
 
--   There is problem in site rendering when a org file is linked to a org file which has not been exported to markdown. I might not export all my notes to markdown because they might not be publishable.
+-   There is problem in site rendering when a org file is linked to a org file which has not been exported to markdown. I might not export all my notes to markdown because they might be publishable.
 
 -   Add biblography
 
