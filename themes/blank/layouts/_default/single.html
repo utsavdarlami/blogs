@@ -47,6 +47,9 @@
       {{ .Content }}
     </div>
 
+    <hr>
+    {{ partial "issues.html" . }}
+
     <p style="font-size:1.25em;text-align:center">
       {{ if .Prev }}
       <a href="{{ .Prev.RelPermalink }}">&#x21E6;</a>
