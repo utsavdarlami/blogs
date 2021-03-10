@@ -11,7 +11,7 @@ draft = false
 
 -   References :
     -   <https://ddavis.io/>  Copied shamelessly from here\*
-    -   <https://seds.nl/>  **My ulitmate plan**
+    -   <https://seds.nl/>  **My ultimate plan**
 
 -   Questions :
 
@@ -19,7 +19,7 @@ draft = false
 
 I have made a base site using [hugo](https://gohugo.io/) static generator.
 The posts are written using org-mode from emacs. The plugin \`[ox-hugo](https://ox-hugo.scripter.co/)\` converts the org file to markdown and places it to the posts folder of the hugo site folder.
-I have also used roam capture template so that the placeholder for tags and categories are perdefined in new org files.
+I have also used roam capture template so that the placeholder for tags and categories are predefined in new org files.
 The placeholder includes roam\_tags, hugo\_tags, hugo\_categories, HUGO\_BASE\_DIR path
 
 
