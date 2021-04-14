@@ -1,5 +1,7 @@
 {{ define "main" }}
 <main>
+  {{ partial "nav.html" . }}
+  
   {{ if or .Title .Content }}
   <div>
     {{ with lower .Title }}<h2>{{ . }}</h2>{{ end }}

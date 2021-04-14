@@ -3,3 +3,6 @@
 /site.tar.gz
 .DS_Store
 .*.~
+/content/posts/unpublished/
+/content/posts/.obsidian/
+***/*~

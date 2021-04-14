@@ -1,11 +1,6 @@
 {{ define "main" }}
 
-<p align="left">
-<a href="{{ .Site.Params.homeUrl }}">home</a> |
-<a href="{{ .Site.BaseURL }}about">about</a> |
-<a href="{{ .Site.BaseURL }}tags">tags</a> |
-<a href="{{ .Site.BaseURL }}categories">categories</a> |
-</p>
+{{ partial "nav.html" . }}
 
 <main>
   <h2>felladog blogs</h2>
