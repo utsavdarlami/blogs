@@ -12,4 +12,4 @@ Computer Science Undergraduate Student from  Kathmandu University, Nepal
  
 Contact :
 - mail : utsavdarlami17@gmail.com
-- [Github]("https://github.com/utsavdarlami")
+- [Github](https://github.com/utsavdarlami)
