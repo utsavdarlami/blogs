@@ -1,13 +1,14 @@
 {{ define "main" }}
 <main>
+
     {{ if not .Site.Params.notoc }}
-      {{ with .TableOfContents }}
-        <div class="toc">
-         {{ . }}
-         <a href="#" class="back-to-top">Back to top</a>
-        </div>
-      {{ end }}
-      {{ partial "toc_on_side.html" . }}
+        {{ with .TableOfContents }}
+          <div class="toc">
+           {{ . }}
+           <a href="#" class="back-to-top">Back to top</a>
+          </div>
+        {{ end }}
+        {{ partial "toc_on_side.html" . }}
     {{ end }}
 
     <p align="right">
@@ -20,45 +21,52 @@
     </p>
 
   <article>
+
       <h1>{{ .Title }}</h1>
-      <div  style="float:left"><time>{{ .Date.Format "2006 January 02" }}</time></div>
-    <hr>
 
-    <div style="">
-      tags:
-      {{ with .Params.tags }}
-      {{ range . }}
-      <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
-      {{ end }}
-      {{ end }}
-    </div>
+      <div  style="float:left"><time>Published Date : {{ .Date.Format "2006 January 02" }}</time></div>
+      <br>
+      <div  style="float:left"><time>Last Modified : {{ .Lastmod.Format "2006 January 02" }}</time></div>
+      <hr>
 
-    <div style="float:left">
-      categories:
-      {{ with .Params.categories}}
-      {{ range . }}
-      <a href="{{ "/categories/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
-      {{ end }}
-      {{ end }}
-    </div>
+      <div style="">
+          tags:
+          {{ with .Params.tags }}
+          {{ range . }}
+          <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
+          {{ end }}
+          {{ end }}
+      </div>
 
-    <div>
-      {{ .Content }}
-    </div>
+      <div style="float:left">
+          categories:
+          {{ with .Params.categories}}
+          {{ range . }}
+          <a href="{{ "/categories/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
+          {{ end }}
+          {{ end }}
+      </div>
 
-    <hr>
-    {{ partial "issues.html" . }}
+      <div>
+          {{ .Content }}
+      </div>
 
-    <p style="font-size:1.25em;text-align:center">
+      <hr>
+
+      {{ partial "issues.html" . }}
+
+      <p style="font-size:1.25em;text-align:center">
       {{ if .Prev }}
       <a href="{{ .Prev.RelPermalink }}">&#x21E6;</a>
       {{ end }}
       {{ if .Next }}
       <a href="{{ .Next.RelPermalink }}">&#x21E8;</a>
       {{ end }}
-    </p>
+      </p>
 
   </article>
+
   {{ partial "sidebar.html" . }}
+  
 </main>
 {{ end }}

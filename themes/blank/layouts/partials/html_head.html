@@ -5,7 +5,7 @@
     <title>{{ .Title }}</title>
     {{ with .Site.Params.description }}<meta name="description" content="{{ . }}">{{ end }}
     {{ with .Site.Params.author }}<meta name="author" content="{{ . }}">{{ end }}
-    <link rel="shortcut icon" href="img/21-512.png" />
+    <link rel="shortcut icon" href="{{ "img/21-512.png" | relURL }}"/>
     <link rel="stylesheet" href="{{ "css/style.css" | relURL }}"/>
     <link rel="stylesheet" href="{{ "css/syntax.css" | relURL }}"/>
     <link rel="stylesheet" href="{{ "css/toc.css" | relURL }}"/>
@@ -19,5 +19,5 @@
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script> -->
 
     {{ with .OutputFormats.Get "RSS" -}}
-    {{ printf `<link rel="%s" type="%s" href="%s" title="%s">` .Rel .MediaType.Type .RelPermalink $.Site.Title | safeHTML }}
+        {{ printf `<link rel="%s" type="%s" href="%s" title="%s">` .Rel .MediaType.Type .RelPermalink $.Site.Title | safeHTML }}
     {{- end }}

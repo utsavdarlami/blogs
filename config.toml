@@ -8,6 +8,10 @@ paginate = 100
 pygmentsCodeFences = true
 pygmentsUseClasses = true
 
+refLinksErrorLevel = "WARNING"
+refLinksNotFoundURL =  "/blogs/404.html"
+
+
 
 [Params]
 title = "felladog blog"

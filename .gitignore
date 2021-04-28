@@ -4,5 +4,6 @@
 .DS_Store
 .*.~
 /content/posts/unpublished/
+/content/unpublished/
 /content/posts/.obsidian/
 ***/*~
