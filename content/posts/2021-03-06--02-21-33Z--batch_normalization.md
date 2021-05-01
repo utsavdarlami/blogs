@@ -2,10 +2,10 @@
 title = "Batch Normalization"
 author = ["felladog"]
 date = 2021-03-06T08:06:00+05:45
-lastmod = 2021-05-01T11:16:04+05:45
+lastmod = 2021-05-01T11:49:57+05:45
 tags = ["BatchNorm", "Normalization"]
 categories = ["deep learning"]
-draft = true
+draft = false
 +++
 
 ---
