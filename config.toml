@@ -3,13 +3,15 @@ title = "felladog"
 theme = "blank"
 languageCode = "en"
 
-paginate = 100
+paginate = 20
 
 pygmentsCodeFences = true
 pygmentsUseClasses = true
 
 refLinksErrorLevel = "WARNING"
 refLinksNotFoundURL =  "/blogs/404.html"
+ignoreErrors = ["error-remote-getjson"]
+
 
 
 
