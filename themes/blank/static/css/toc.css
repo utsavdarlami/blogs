@@ -4,11 +4,11 @@
     display: block;
     position: fixed;
     left: 45%;
-    top: 50%;
-    width: 200px;
+    top: 25%;
+    width: 250px;
     margin-left: 570px;
     overflow-y: auto;
-    max-height: 85%;
+    max-height: 60%;
     padding: 0;
 }
 .toc li {
