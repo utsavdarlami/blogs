@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>RNN on felladog</title><link>https://utsavdarlami.github.io/blogs/tags/rnn/</link><description>Recent content in RNN on felladog</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 02 Mar 2021 12:40:00 +0545</lastBuildDate><atom:link href="https://utsavdarlami.github.io/blogs/tags/rnn/index.xml" rel="self" type="application/rss+xml"/><item><title>Recurrent Neural Networks</title><link>https://utsavdarlami.github.io/blogs/notes/20210213135051-recurrent_neural_networks/</link><pubDate>Tue, 02 Mar 2021 12:40:00 +0545</pubDate><guid>https://utsavdarlami.github.io/blogs/notes/20210213135051-recurrent_neural_networks/</guid><description>Acknowledgement https://d2l.ai/chapter%5Frecurrent-neural-networks/index.html
+https://github.com/fastai/fastbook/blob/master/12%5Fnlp%5Fdive.ipynb
+https://stanford.edu/~shervine/teaching/cs-230/cheatsheet-recurrent-neural-networks
+https://colah.github.io/posts/2015-08-Understanding-LSTMs/ [Mainly LSTM]
+https://deeplearning.cs.cmu.edu/S20/document/recitation/recitation-7.pdf
+http://cs231n.stanford.edu/slides/2017/cs231n%5F2017%5Flecture10.pdf
+https://www.youtube.com/watch?v=6niqTuYFZLQ
+http://ethen8181.github.io/machine-learning/deep%5Flearning/rnn/1%5Fpytorch%5Frnn.html#Recurrent-Neural-Network-(RNN) [Main reference]
+https://medium.com/ecovisioneth/building-deep-multi-layer-recurrent-neural-networks-with-star-cell-2f01acdb73a7 [Multi Layer]
+https://towardsdatascience.com/pytorch-basics-how-to-train-your-neural-net-intro-to-rnn-cb6ebc594677
+https://www.jeremyjordan.me/introduction-to-recurrent-neural-networks/
+https://towardsdatascience.com/pytorch-basics-how-to-train-your-neural-net-intro-to-rnn-cb6ebc594677
+Recurrent neural networks (RNNs) are designed to better handle sequential information. (text and stocks)
+RNNs introduce state variables(hidden state) to store past information, together with the current inputs, to determine the current outputs.</description></item></channel></rss>
