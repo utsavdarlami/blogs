@@ -24,4 +24,5 @@ issueUrl = "https://github.com/utsavdarlami/blogs/issues/new"
 author = "Utsav Darlami"
 description = "felladog"
 notoc = false 
+mainsections = "posts"
 # ignoreFiles = ["\\.Rmd$", "_files$", "_cache$"]
