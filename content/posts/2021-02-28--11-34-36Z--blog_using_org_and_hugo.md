@@ -2,7 +2,7 @@
 title = "blog using org and hugo"
 author = ["felladog"]
 date = 2021-02-28T17:19:00+05:45
-lastmod = 2021-06-03T20:19:38+05:45
+lastmod = 2021-06-04T08:03:07+05:45
 tags = ["blog", "org-mode", "org-roam", "hugo"]
 categories = ["workflow"]
 draft = false

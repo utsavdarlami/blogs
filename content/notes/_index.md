@@ -1,3 +1,3 @@
 ---
-title: notes for me
+title: Notes for me
 ---
