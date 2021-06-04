@@ -1,5 +1,5 @@
 <article>
-  {{ if ne .Section "tags" }}
+  {{ if ne .Section "tags" "categories"}}
   <time><code>{{ .Date.Format "2006 Jan 02" }} &rarr;</code></time>
   {{ end }}
   <a href="{{ .Permalink }}">{{ .Title }}</a>
