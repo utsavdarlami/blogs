@@ -1,10 +1,12 @@
 {{ define "main" }}
-<main>
+<p align="left">
   {{ partial "nav.html" . }}
+</p>
+<main>
   
   {{ if or .Title .Content }}
   <div>
-    {{ with lower .Title }}<h2>{{ . }}</h2>{{ end }}
+    {{ with .Title }}<h2>{{ . }}</h2>{{ end }}
     {{ with .Content }}<div>{{ . }}</div>{{ end }}
   </div>
   {{ end }}

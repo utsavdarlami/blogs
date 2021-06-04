@@ -1,9 +1,16 @@
 {{ define "main" }}
 
-{{ partial "nav.html" . }}
+<p align="left">
+  {{ partial "nav.html" . }}
+</p>
 
 <main>
-  <h2>felladog blogs</h2>
+  {{ if or .Title }}
+  <div>
+    {{ with lower .Title }}<h2>{{ . }}</h2>{{ end }}
+  </div>
+  {{ end }}
+
   {{ $paginator := .Paginate (where .Site.RegularPages "Type" "in" .Site.Params.mainSections) }}
   {{ range $paginator.Pages }}
   {{ .Render "summary" }}

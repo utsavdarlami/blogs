@@ -12,20 +12,14 @@
     {{ end }}
 
     <p align="right">
-      <a href="{{ .Site.Params.homeUrl }}">home</a> |
-      <a href="{{ .Site.BaseURL }}posts">blogs</a> |
-      <a href="{{ .Site.BaseURL }}notes">notes</a> |
-      <a href="{{ .Site.BaseURL }}about">about me</a> |
-      <a href="{{ .Site.BaseURL }}tags">tags</a> |
-      <a href="{{ .Site.BaseURL }}categories">categories</a> |
-      <a href="{{ .Site.BaseURL }}index.xml">feed</a>
+      {{ partial "nav.html" . }}
     </p>
 
   <article>
 
       <h1>{{ .Title }}</h1>
 
-      <div  style="float:left"><time>Published Date : {{ .Date.Format "2006 January 02" }}</time></div>
+      <div  style="float:left"><time>Created Date : {{ .Date.Format "2006 January 02" }}</time></div>
       <br>
       <div  style="float:left"><time>Last Modified : {{ .Lastmod.Format "2006 January 02" }}</time></div>
       <hr>
