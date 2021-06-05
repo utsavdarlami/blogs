@@ -2,7 +2,7 @@
 title = "concept learning"
 author = ["felladog"]
 date = 2021-06-04T19:53:00+05:45
-lastmod = 2021-06-05T20:14:31+05:45
+lastmod = 2021-06-05T20:19:47+05:45
 tags = ["find-s", "candidate-elimination", "hypothesis"]
 categories = ["machine learning"]
 draft = false
@@ -253,6 +253,8 @@ draft = false
 ## Inductive systems and Equivalent Deductive systems. {#inductive-systems-and-equivalent-deductive-systems-dot}
 
 {{< figure src="/ox-hugo/model_systems_is_eds.png" caption="Figure 11: Modeling systems, from Tom Mitchell Chapter 2" width="600" height="530" target="/blogs" >}}
+
+-   Inductive learners can be modelled by equivalent deductive systems
 
 
 ## Learning algorithms from weakest to strongest bias. {#learning-algorithms-from-weakest-to-strongest-bias-dot}
