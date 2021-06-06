@@ -2,7 +2,7 @@
 title = "concept learning"
 author = ["felladog"]
 date = 2021-06-04T19:53:00+05:45
-lastmod = 2021-06-05T20:19:47+05:45
+lastmod = 2021-06-06T22:00:46+05:45
 tags = ["find-s", "candidate-elimination", "hypothesis"]
 categories = ["machine learning"]
 draft = false
@@ -14,6 +14,8 @@ draft = false
     -   Reading:
         -   Tom Mitchell Lectures slides of chapter 2
         -   Tom Mitchell, Machine Learning Chapter 2
+    -   To Read:
+        -   [Candidate elimination algorithm with an example](https://medium.com/@pralhad2481/chapter-2-concept-learning-part-2-d8aa0761143e)
 -   Questions :
 
 ---
