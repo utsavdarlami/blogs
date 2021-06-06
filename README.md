@@ -1,5 +1,5 @@
 # Personal blog site.
 
-- https://utsavdarlami.github.io/blogs/posts/
+- https://utsavdarlami.github.io/blogs/
  
 org-mode -> hugo
