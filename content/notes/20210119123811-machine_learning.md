@@ -2,7 +2,7 @@
 title = "machine learning"
 author = ["felladog"]
 date = 2021-01-17T17:28:00+05:45
-lastmod = 2021-06-06T10:02:35+05:45
+lastmod = 2021-06-07T08:17:43+05:45
 tags = ["ml"]
 categories = ["machine learning"]
 draft = false
@@ -11,10 +11,12 @@ draft = false
 ---
 
 -   references
--   Reading List
-    -   <https://medium.com/octavian-ai/how-to-get-started-with-machine-learning-on-graphs-7f0795c83763>
-    -   <https://medium.datadriveninvestor.com/3-steps-introduction-to-machine-learning-and-design-of-a-learning-system-bd12b65aa50c>
-    -   <https://chrisalbon.com/>
+    -   Reading
+        -   <https://www.cs.cmu.edu/~tom/mlbook.html>
+    -   To Read
+        -   <https://medium.com/octavian-ai/how-to-get-started-with-machine-learning-on-graphs-7f0795c83763>
+        -   <https://medium.datadriveninvestor.com/3-steps-introduction-to-machine-learning-and-design-of-a-learning-system-bd12b65aa50c>
+        -   <https://chrisalbon.com/>
 
 ---
 
