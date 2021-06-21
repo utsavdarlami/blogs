@@ -25,6 +25,21 @@
     font-display: swap;
 }
 
+* { 
+
+    /* Color scheme */
+
+    /*background: #282828;*/
+   /*color:      #ebdbb2;*/
+    /*color: #d79921;*/
+
+    --textcolor: #ebdbb2; /*#dadada;*/
+    --bgcolor: #282828;  /*#1a2026;*/
+    --highlight: #d79921;  /*#9ce5c0;*/
+    --cardbg: #29343d;
+
+}
+
 html {
     min-width: 20em;
     max-width: 84ch;
@@ -35,8 +50,8 @@ html {
 body {
     font-family: 'Recursive', 'Liberation Sans', Arial, sans-serif;
     line-height: 1.5;
-    background: #282828;
-    color:      #ebdbb2;
+    background: var(--bgcolor);
+    color:      var(--textcolor);
 }
 
 header {
@@ -59,7 +74,7 @@ pre {
     overflow-x: auto;
     padding: 0.5ch;
     border-radius: 10px;
-    border: 2px solid #d79921;
+    border: 2px solid var(--highlight); /*#d79921;*/
     padding: 10px;
     scrollbar-width: none;
     font-size: 1.0em;
@@ -80,7 +95,7 @@ pre::-webkit-scrollbar {
 
 a, a:visited {
     text-decoration: none;
-    color: #d79921;
+    color: var(--highlight); /*#d79921;*/
 }
 
 a:hover {
@@ -96,6 +111,6 @@ a:hover {
 }
 
 hr {
-    border-top: 1px solid  #d79921;
+    border-top: 1px solid  var(--highlight); /*#d79921;*/
     margin-top: 2rem;
 }
