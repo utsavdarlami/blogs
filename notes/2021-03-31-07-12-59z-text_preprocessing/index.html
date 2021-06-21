@@ -13,9 +13,9 @@ simple vectors.</p><h3 id=creating-bag-of-words-using-sklearn>Creating Bag of wo
 <span class=n>vectorizer</span> <span class=o>=</span> <span class=n>CountVectorizer</span><span class=p>(</span><span class=n>min_df</span><span class=o>=</span><span class=mi>1</span><span class=p>)</span>
 <span class=n>content</span> <span class=o>=</span> <span class=p>[</span><span class=s2>&#34;How to format my hard disk&#34;</span><span class=p>,</span> <span class=s2>&#34; Hard disk format problems &#34;</span><span class=p>]</span>
 <span class=n>X</span>  <span class=o>=</span> <span class=n>vectorizer</span><span class=o>.</span><span class=n>fit_transform</span><span class=p>(</span><span class=n>content</span><span class=p>)</span>
-<span class=k>print</span><span class=p>(</span><span class=n>vectorizer</span><span class=o>.</span><span class=n>get_feature_names</span><span class=p>())</span>
-<span class=k>print</span><span class=p>(</span><span class=s2>&#34;vectors from post 1 and 2&#34;</span><span class=p>)</span>
-<span class=k>print</span><span class=p>(</span><span class=n>X</span><span class=o>.</span><span class=n>toarray</span><span class=p>()</span><span class=o>.</span><span class=n>transpose</span><span class=p>())</span>
+<span class=nb>print</span><span class=p>(</span><span class=n>vectorizer</span><span class=o>.</span><span class=n>get_feature_names</span><span class=p>())</span>
+<span class=nb>print</span><span class=p>(</span><span class=s2>&#34;vectors from post 1 and 2&#34;</span><span class=p>)</span>
+<span class=nb>print</span><span class=p>(</span><span class=n>X</span><span class=o>.</span><span class=n>toarray</span><span class=p>()</span><span class=o>.</span><span class=n>transpose</span><span class=p>())</span>
 </code></pre></div><div class=highlight><pre class=chroma><code class=language-text data-lang=text>[&#39;disk&#39;, &#39;format&#39;, &#39;hard&#39;, &#39;how&#39;, &#39;my&#39;, &#39;problems&#39;, &#39;to&#39;]
 vectors from post 1 and 2
 [[1 1]
