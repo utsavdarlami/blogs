@@ -46,11 +46,7 @@
           {{ .Content }}
       </div>
 
-      <hr>
-
-      {{ partial "issues.html" . }}
-
-      <p style="font-size:1.25em;text-align:center">
+      <p style="font-size:1.65em;text-align:center">
       {{ if .Prev }}
       <a href="{{ .Prev.RelPermalink }}">&#x21E6;</a>
       {{ end }}
@@ -58,11 +54,16 @@
       <a href="{{ .Next.RelPermalink }}">&#x21E8;</a>
       {{ end }}
       </p>
+      
+      <hr>
+
+      {{ partial "backlinks.html" . }}
+
+      {{ partial "issues.html" . }}
 
   </article>
 
   <!--{{ partial "sidebar.html" . }}-->
-   {{ partial "backlinks.html" . }}
-  
+
 </main>
 {{ end }}

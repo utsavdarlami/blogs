@@ -33,9 +33,9 @@
    /*color:      #ebdbb2;*/
     /*color: #d79921;*/
 
-    --textcolor: #cdc8b7; /*#ebdbb2; #dadada;*/
-    --bgcolor:  #282828;  /*#1a2026;*/
-    --highlight: #d79921;  /*#9ce5c0;*/
+    --textcolor: #00002a;  
+    --bgcolor:  #f5f6f5; 
+    --highlight: #193c50; 
     --cardbg: #29343d;
 
 }
