@@ -2,7 +2,7 @@
 title = "ML Model Evaluation"
 author = ["felladog"]
 date = 2021-02-24T16:23:00+05:45
-lastmod = 2021-06-07T08:07:19+05:45
+lastmod = 2021-07-08T09:01:25+05:45
 tags = ["f1 score", "dice score", "precision", "recall"]
 categories = ["Machine Learning"]
 draft = false
@@ -66,4 +66,4 @@ draft = false
     -   the actual target classes as columns
     -   the predicted classes as rows,
 
-{{< figure src="/ox-hugo/2021-05-23_09-23-53_screenshot.png" width="700" height="400" target="/blogs" >}}
+{{< figure src="/ox-hugo/cf_matrix.png" width="450" height="250" target="/blogs" >}}
