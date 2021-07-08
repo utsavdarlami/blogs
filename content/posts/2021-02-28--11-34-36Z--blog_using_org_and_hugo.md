@@ -2,7 +2,7 @@
 title = "blog using org and hugo"
 author = ["felladog"]
 date = 2021-02-28T17:19:00+05:45
-lastmod = 2021-06-04T08:03:07+05:45
+lastmod = 2021-07-08T08:34:53+05:45
 tags = ["blog", "org-mode", "org-roam", "hugo"]
 categories = ["workflow"]
 draft = false
@@ -47,9 +47,9 @@ The placeholder includes roam\_tags, hugo\_tags, hugo\_categories, HUGO\_BASE\_D
 
     ```latex
     ​- What i want is :
-    ​  - [entropy]({{ < relref "2021-03-06--03-56-06Z--entropy" > }})
+    ​  - [xyz]({{ < relref "2021-03-06--03-56-06Z--xyz" > }})
     ​- But, I got on using org id :
-    ​  - [entropy](2021-05-29--04-28-46Z--entropy.md)
+    ​  - [xyz](2021-05-29--04-28-46Z--xyz.md)
     ```
 -   changed the ox-hugo.el part
 -   <https://github.com/jethrokuan/ox-hugo/commit/18e32d40ae84db50130681cbb9e641a74f9735f6>
