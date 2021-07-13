@@ -2,7 +2,7 @@
 title = "ML Model Evaluation"
 author = ["felladog"]
 date = 2021-02-24T16:23:00+05:45
-lastmod = 2021-07-08T09:01:25+05:45
+lastmod = 2021-07-13T09:33:21+05:45
 tags = ["f1 score", "dice score", "precision", "recall"]
 categories = ["Machine Learning"]
 draft = false
@@ -23,19 +23,42 @@ draft = false
 ## Classfication {#classfication}
 
 
+### True Positive (TP) {#true-positive--tp}
+
+-   Positive class correctly labeled/predicted
+
+
+### False Negative (FN) {#false-negative--fn}
+
+-   Positive class incorrectly labeled/predicted
+
+
+### False Positive (FP) {#false-positive--fp}
+
+-   Negative class incorrectly labeled/predicted
+
+
+### True Negative (TN) {#true-negative--tn}
+
+-   Negative class correctly labeled/predicted
+
+
 ### Accuracy {#accuracy}
+
+-   It is simply a ratio of correctly predicted observation to the total observations.
+-   Accuracy = \\(\frac{TP + TN}{TP + TN + FN + FP}\\)
 
 
 ### Precision {#precision}
 
 -   Precision = \\(\frac{True Positive}{True Positive + False Positive}\\)
--   From all the postive prediction given by our hypothesis/model how many examples where true positive
+-   From all the postive prediction given by our hypothesis/model how many examples were true positive
 
 
 ### Recall {#recall}
 
 -   Recall = \\(\frac{True Positive}{True Positive + False Negative}\\)
--   From all the postive examples how many examples where correctly classified by our hypothesis/model
+-   From all the postive examples how many examples were correctly classified by our hypothesis/model
 
 
 ### F1 Score {#f1-score}
@@ -67,3 +90,10 @@ draft = false
     -   the predicted classes as rows,
 
 {{< figure src="/ox-hugo/cf_matrix.png" width="450" height="250" target="/blogs" >}}
+
+
+### Classfication Report {#classfication-report}
+
+-   It shows a representation of the main classification metrics on a per-class basis.
+-   The classification report displays the precision, recall, F1, and support scores for the model.
+-   These metrics are defined in terms of true and false positives, and true and false negatives.

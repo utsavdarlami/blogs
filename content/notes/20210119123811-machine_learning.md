@@ -2,7 +2,7 @@
 title = "machine learning"
 author = ["felladog"]
 date = 2021-01-17T17:28:00+05:45
-lastmod = 2021-06-07T08:17:43+05:45
+lastmod = 2021-07-13T09:49:46+05:45
 tags = ["ml"]
 categories = ["machine learning"]
 draft = false
@@ -26,11 +26,6 @@ A computer program is said to learn from experience E with respect to some class
     -   Task T: playing checkers
     -   Performance measure P: percent of games won against opponents
     -   Training experience E: playing practice games against itself
-
-
-## Statistics {#statistics}
-
--   standard deviation
 
 
 ## Supervised {#supervised}
