@@ -2,10 +2,10 @@
 title = "image segmentation"
 author = ["felladog"]
 date = 2021-02-24T16:16:00+05:45
-lastmod = 2021-07-13T09:50:38+05:45
+lastmod = 2021-07-13T10:02:47+05:45
 tags = ["image"]
 categories = ["Machine Learning"]
-draft = true
+draft = false
 +++
 
 ---
