@@ -2,7 +2,7 @@
 title = "Recurrent Neural Networks"
 author = ["felladog"]
 date = 2021-03-02T12:40:00+05:45
-lastmod = 2021-06-03T20:14:04+05:45
+lastmod = 2021-07-13T21:16:33+05:45
 tags = ["RNN", "Sequence Models"]
 categories = ["Deep Learning"]
 draft = false

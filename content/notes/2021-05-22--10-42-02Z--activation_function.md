@@ -2,7 +2,7 @@
 title = "activation function"
 author = ["felladog"]
 date = 2021-05-22T16:27:00+05:45
-lastmod = 2021-06-03T20:17:50+05:45
+lastmod = 2021-07-13T20:53:41+05:45
 tags = ["no_tags"]
 categories = ["uncategorized"]
 draft = false

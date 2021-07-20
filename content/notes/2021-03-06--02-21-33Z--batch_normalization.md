@@ -2,7 +2,7 @@
 title = "Batch Normalization"
 author = ["felladog"]
 date = 2021-03-06T08:06:00+05:45
-lastmod = 2021-06-03T20:05:54+05:45
+lastmod = 2021-07-13T21:17:06+05:45
 tags = ["BatchNorm", "Normalization"]
 categories = ["deep learning"]
 draft = false
@@ -18,7 +18,7 @@ draft = false
     -   [Why is batch norm becoming so unpopular](https://www.reddit.com/r/MachineLearning/comments/nnivo6/d%5Fwhy%5Fis%5Fbatch%5Fnorm%5Fbecoming%5Fso%5Funpopular/)
 -   Questions :
     1.  What is Normalization?
-        -   [Normalization]({{< relref "2021-03-06--02-35-46Z--normalization" >}})
+        -   [Normalization](2021-03-06--02-35-46Z--normalization.md)
 
 ---
 
@@ -131,4 +131,4 @@ SD  = 0.999940037727356
 
 -   Like a dropout layer, batch normalization layers have different computation results in training mode and prediction mode.
 
--   Batch normalization has many beneficial side effects, primarily that of [regularization]({{< relref "2021-05-26--11-28-39Z--regularization" >}}). On the other hand, the original motivation of reducing internal covariate shift seems not to be a valid explanation.
+-   Batch normalization has many beneficial side effects, primarily that of [regularization](2021-05-26--11-28-39Z--regularization.md). On the other hand, the original motivation of reducing internal covariate shift seems not to be a valid explanation.

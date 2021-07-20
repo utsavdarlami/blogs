@@ -2,7 +2,7 @@
 title = "regularization"
 author = ["felladog"]
 date = 2021-05-26T17:13:00+05:45
-lastmod = 2021-06-03T20:14:35+05:45
+lastmod = 2021-07-13T21:17:06+05:45
 tags = ["no_tags"]
 categories = ["machine learning"]
 draft = false
@@ -33,4 +33,4 @@ In machine learning and regularization is the process of adding information in o
 ## For Deep learning {#for-deep-learning}
 
 -   Dropout
--   [Batch Normalization]({{< relref "2021-03-06--02-21-33Z--batch_normalization" >}})
+-   [Batch Normalization](2021-03-06--02-21-33Z--batch_normalization.md)

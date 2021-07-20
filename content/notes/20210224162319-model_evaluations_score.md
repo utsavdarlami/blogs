@@ -2,8 +2,8 @@
 title = "ML Model Evaluation"
 author = ["felladog"]
 date = 2021-02-24T16:23:00+05:45
-lastmod = 2021-07-13T09:33:21+05:45
-tags = ["f1 score", "dice score", "precision", "recall"]
+lastmod = 2021-07-13T21:17:02+05:45
+tags = ["accuracy", "f1 score", "dice score", "precision", "recall"]
 categories = ["Machine Learning"]
 draft = false
 +++
@@ -17,7 +17,7 @@ draft = false
 
 ---
 
-[ml]({{< relref "20210119123811-machine_learning" >}}) model evaluation methods
+[ml](20210119123811-machine_learning.md) model evaluation methods
 
 
 ## Classfication {#classfication}

@@ -2,7 +2,7 @@
 title = "image filtering"
 author = ["felladog"]
 date = 2021-05-28T17:47:00+05:45
-lastmod = 2021-07-13T10:01:37+05:45
+lastmod = 2021-07-13T21:55:10+05:45
 tags = ["convolution", "correlation", "filters", "gaussian", "median", "non-local", "bilateral", "BM3D"]
 categories = ["image processing"]
 draft = false
@@ -99,7 +99,7 @@ median_skimage = median(img, disk(3), mode='constant', cval=0.0)
 ```
 
 
-### [entropy]({{< relref "2021-03-06--03-56-06Z--entropy" >}}) filter {#entropy--2021-03-06-03-56-06z-entropy-dot-md--filter}
+### [entropy]({{<relref "2021-03-06--03-56-06Z--entropy.md" >}}) filter {#entropy--2021-03-06-03-56-06z-entropy-dot-md--filter}
 
 The entropy filter can detect subtle variations in the local gray level distribution. It is usually used to classify textures, a certain texture might have a certain entropy as certain patterns repeat themselves in approximately certain ways.
 
@@ -232,7 +232,7 @@ unsharped_img = unsharp_mask(img, radius=3, amount=1.0)
 ```
 
 
-## [Edge Filters]({{< relref "2021-05-31--03-54-38Z--edge_filters" >}}) {#edge-filters--2021-05-31-03-54-38z-edge-filters-dot-md}
+## [Edge Filters]({{<relref "2021-05-31--03-54-38Z--edge_filters.md" >}}) {#edge-filters--2021-05-31-03-54-38z-edge-filters-dot-md}
 
 
 ## Ridge filters {#ridge-filters}
@@ -273,7 +273,7 @@ unsharped_img = unsharp_mask(img, radius=3, amount=1.0)
 
 ## Discrete Fourier Transform {#discrete-fourier-transform}
 
--   [dft\_in\_image]({{< relref "2021-07-04--14-06-19Z--dft_in_image" >}})
+-   [dft\_in\_image]({{<relref "2021-07-04--14-06-19Z--dft_in_image.md" >}})
 
 
 ## In python {#in-python}

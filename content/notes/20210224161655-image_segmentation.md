@@ -2,7 +2,7 @@
 title = "image segmentation"
 author = ["felladog"]
 date = 2021-02-24T16:16:00+05:45
-lastmod = 2021-07-13T10:02:47+05:45
+lastmod = 2021-07-20T18:08:11+05:45
 tags = ["image"]
 categories = ["Machine Learning"]
 draft = false
@@ -10,10 +10,9 @@ draft = false
 
 ---
 
--   referencees :
+-   references:
     -   <https://www.youtube.com/watch?v=AZr64OxshLo>
     -   <https://www.youtube.com/watch?v=0FmNxqLFeYo>
-    -   <https://stats.stackexchange.com/questions/273537/f1-dice-score-vs-iou>
 -   questions :
 
 ---
@@ -22,10 +21,10 @@ draft = false
 ## Using Classical Approach {#using-classical-approach}
 
 
-### [Histogram Based Segmentation]({{< relref "2021-07-04--16-24-59Z--histogram_based_segmentation" >}}) {#histogram-based-segmentation--2021-07-04-16-24-59z-histogram-based-segmentation-dot-md}
+### [Histogram Based Segmentation]({{<relref "2021-07-04--16-24-59Z--histogram_based_segmentation.md" >}}) {#histogram-based-segmentation--2021-07-04-16-24-59z-histogram-based-segmentation-dot-md}
 
 
-### [thresholding]({{< relref "2021-05-27--05-20-06Z--thresholding" >}}) {#thresholding--2021-05-27-05-20-06z-thresholding-dot-md}
+### [thresholding]({{<relref "2021-05-27--05-20-06Z--thresholding.md" >}}) {#thresholding--2021-05-27-05-20-06z-thresholding-dot-md}
 
 
 ### Random Walker Segmentation {#random-walker-segmentation}
@@ -43,16 +42,16 @@ draft = false
 ## Using Unsupervised Approach {#using-unsupervised-approach}
 
 
-### [Gaussian Mixture Model]({{< relref "2021-04-13--13-20-35Z--gaussian_mixture_model" >}}) {#gaussian-mixture-model--2021-04-13-13-20-35z-gaussian-mixture-model-dot-md}
+### [Gaussian Mixture Model]({{<relref "2021-04-13--13-20-35Z--gaussian_mixture_model.md" >}}) {#gaussian-mixture-model--2021-04-13-13-20-35z-gaussian-mixture-model-dot-md}
 
 
-### [Kmeans Clustering]({{< relref "2021-05-23--03-19-46Z--kmeans_clustering" >}}) {#kmeans-clustering--2021-05-23-03-19-46z-kmeans-clustering-dot-md}
+### [Kmeans Clustering]({{<relref "2021-05-23--03-19-46Z--kmeans_clustering.md" >}}) {#kmeans-clustering--2021-05-23-03-19-46z-kmeans-clustering-dot-md}
 
 
 ## Using Deep Learning {#using-deep-learning}
 
 
-### [UNET]({{< relref "2021-05-26--11-48-24Z--unet" >}}) {#unet--2021-05-26-11-48-24z-unet-dot-md}
+### [UNET]({{<relref "2021-05-26--11-48-24Z--unet.md" >}}) {#unet--2021-05-26-11-48-24z-unet-dot-md}
 
 
 ## Image Segmentation Loss/Evaluation Method {#image-segmentation-loss-evaluation-method}
@@ -72,7 +71,7 @@ draft = false
     = \\(\frac{TP}{TP + FP + FN}\\)
 
 
-### [Dice Score]({{< relref "20210224162319-model_evaluations_score" >}}) {#dice-score--20210224162319-model-evaluations-score-dot-md}
+### [Dice Score]({{<relref "20210224162319-model_evaluations_score.md" >}}) {#dice-score--20210224162319-model-evaluations-score-dot-md}
 
 -   Easy to differentiate
 -   For Image = \\(\frac{2\*\sum{\hat{y}\*y}} {\sum{\hat{y} + y}}\\)
@@ -82,4 +81,6 @@ draft = false
 
 ### IOU vs Dice Score {#iou-vs-dice-score}
 
-_IoU metric tends to penalize single instances of bad classification more than the F1/Dice score quantitatively even when they can both agree that this one instance is bad._
+_IoU metric tends to penalize single instances of bad classification more than the F1/Dice score quantitatively even when they can both agree that this one instance is bad._[^fn:1]
+
+[^fn:1]: <https://stats.stackexchange.com/questions/273537/f1-dice-score-vs-iou>

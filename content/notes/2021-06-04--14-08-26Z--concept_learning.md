@@ -2,7 +2,7 @@
 title = "concept learning"
 author = ["felladog"]
 date = 2021-06-04T19:53:00+05:45
-lastmod = 2021-06-06T22:00:46+05:45
+lastmod = 2021-07-20T08:25:17+05:45
 tags = ["find-s", "candidate-elimination", "hypothesis"]
 categories = ["machine learning"]
 draft = false
@@ -35,7 +35,7 @@ draft = false
         -   The set of items over which the concept is defined.
         -   denoted by X
         -   For our example, X is possible days with attributes
-    -   For our example, the value of attribute \\(EnjoySport\\) = target concept
+    -   For our example, the value of attribute \\(EnjoySport\\) = target concept/target label
         -   \\( c(x) = 1 \\) if EnjoySport = Yes, positive example
         -   \\( c(x) = 0 \\) if EnjoySport = No, negative example
 -   Simple Hypothesis :
@@ -54,7 +54,7 @@ draft = false
 
 <a id="table--EnjoySport Example"></a>
 
-| Example | Sky   | AirTemp | Humidity | Wind   | Water | Forecast | EnjouSport |
+| Example | Sky   | AirTemp | Humidity | Wind   | Water | Forecast | EnjoySport |
 |---------|-------|---------|----------|--------|-------|----------|------------|
 | 1       | Sunny | Warm    | Normal   | Strong | Warm  | Same     | Yes        |
 | 2       | Sunny | Warm    | High     | Strong | Warm  | Same     | Yes        |
@@ -164,9 +164,12 @@ draft = false
     -   \\( Consistent(h,D) \equiv (\forall \langle x,c(x) \rangle \in D) h(x) = c(x) \\)
     -   x is said _satisfy_ hypothesis when h(x) = 1, regardless of whether x is a positive or negative example of the target concept.
     -   However, whether x is consistent with h depends on the target concept, and in particular, whether h(x) = c(x).
--   **Version Space**
-    -   Denoted \\(VS\_{H,D}\\), with respect to hypothesis space H and training examples D, is the subset of hypotheses from H consistent with the training examples in D.
-        -   \\( VS\_{H,D} \equiv \\{ h \in H | Consistent(h, D) \\} \\)
+
+
+### **Version Space** {#version-space}
+
+-   Denoted \\(VS\_{H,D}\\), with respect to hypothesis space H and training examples D, is the subset of hypotheses from H consistent with the training examples in D.
+    -   \\( VS\_{H,D} \equiv \\{ h \in H | Consistent(h, D) \\} \\)
 
 
 ### The LIST-THEN-ELIMINATE Algorithm {#the-list-then-eliminate-algorithm}
@@ -257,6 +260,10 @@ draft = false
 {{< figure src="/ox-hugo/model_systems_is_eds.png" caption="Figure 11: Modeling systems, from Tom Mitchell Chapter 2" width="600" height="530" target="/blogs" >}}
 
 -   Inductive learners can be modelled by equivalent deductive systems
+-   Inductive system :
+    -   Observe and learn from the set of instances and then draw the conclusion
+-   Deductive system:
+    -   Derives conclusion and then work on it based on the previous decision
 
 
 ## Learning algorithms from weakest to strongest bias. {#learning-algorithms-from-weakest-to-strongest-bias-dot}

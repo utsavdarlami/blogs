@@ -2,7 +2,7 @@
 title = "machine learning"
 author = ["felladog"]
 date = 2021-01-17T17:28:00+05:45
-lastmod = 2021-07-13T09:49:46+05:45
+lastmod = 2021-07-13T21:17:10+05:45
 tags = ["ml"]
 categories = ["machine learning"]
 draft = false
@@ -33,7 +33,7 @@ A computer program is said to learn from experience E with respect to some class
 -   [Lecture 1: Supervised Learning](http://www.cs.cornell.edu/courses/cs4780/2018fa/lectures/lecturenote01%5FMLsetup.html)
 
 
-### [regression]({{< relref "2021-05-26--11-12-25Z--regression" >}}) {#regression--2021-05-26-11-12-25z-regression-dot-md}
+### [regression](2021-05-26--11-12-25Z--regression.md) {#regression--2021-05-26-11-12-25z-regression-dot-md}
 
 
 ### classfication {#classfication}
@@ -42,13 +42,13 @@ A computer program is said to learn from experience E with respect to some class
 ## Unsupervised {#unsupervised}
 
 
-### [clustering]({{< relref "2021-05-26--11-13-54Z--clustering" >}}) {#clustering--2021-05-26-11-13-54z-clustering-dot-md}
+### [clustering](2021-05-26--11-13-54Z--clustering.md) {#clustering--2021-05-26-11-13-54z-clustering-dot-md}
 
 
-### [dimensionality reduction]({{< relref "2021-05-26--11-16-28Z--dimensionality_reduction" >}}) {#dimensionality-reduction--2021-05-26-11-16-28z-dimensionality-reduction-dot-md}
+### [dimensionality reduction](2021-05-26--11-16-28Z--dimensionality_reduction.md) {#dimensionality-reduction--2021-05-26-11-16-28z-dimensionality-reduction-dot-md}
 
 
-## [ML Model Evaluation]({{< relref "20210224162319-model_evaluations_score" >}}) {#ml-model-evaluation--20210224162319-model-evaluations-score-dot-md}
+## [ML Model Evaluation](20210224162319-model_evaluations_score.md) {#ml-model-evaluation--20210224162319-model-evaluations-score-dot-md}
 
 
 ## Graph Based {#graph-based}
