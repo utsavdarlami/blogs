@@ -2,7 +2,7 @@
 title = "concept learning"
 author = ["felladog"]
 date = 2021-06-04T19:53:00+05:45
-lastmod = 2021-07-20T08:25:17+05:45
+lastmod = 2021-07-30T12:25:36+05:45
 tags = ["find-s", "candidate-elimination", "hypothesis"]
 categories = ["machine learning"]
 draft = false
@@ -61,7 +61,6 @@ draft = false
 | 3       | Rainy | Cold    | High     | Strong | Warm  | Change   | No         |
 | 4       | Sunny | Warm    | High     | Strong | Cool  | Change   | Yes        |
 | 5       | Sunny | Warm    | Normal   | Strong | Warm  | Same     | No         |
-|         |       |         |          |        |       |          |            |
 
 -   "A" enjoys sport only on cold days with high humidity, independent of the values of the other attributes, can be represented as
     -   <?, Cold, High, ?, ?, ?>
@@ -166,7 +165,7 @@ draft = false
     -   However, whether x is consistent with h depends on the target concept, and in particular, whether h(x) = c(x).
 
 
-### **Version Space** {#version-space}
+### Version Space {#version-space}
 
 -   Denoted \\(VS\_{H,D}\\), with respect to hypothesis space H and training examples D, is the subset of hypotheses from H consistent with the training examples in D.
     -   \\( VS\_{H,D} \equiv \\{ h \in H | Consistent(h, D) \\} \\)

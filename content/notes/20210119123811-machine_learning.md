@@ -2,7 +2,7 @@
 title = "machine learning"
 author = ["felladog"]
 date = 2021-01-17T17:28:00+05:45
-lastmod = 2021-07-13T21:17:10+05:45
+lastmod = 2021-08-11T11:10:50+05:45
 tags = ["ml"]
 categories = ["machine learning"]
 draft = false
@@ -14,13 +14,17 @@ draft = false
     -   Reading
         -   <https://www.cs.cmu.edu/~tom/mlbook.html>
     -   To Read
+        -   <https://rentruewang.github.io/learning-machine/intro.html>
         -   <https://medium.com/octavian-ai/how-to-get-started-with-machine-learning-on-graphs-7f0795c83763>
         -   <https://medium.datadriveninvestor.com/3-steps-introduction-to-machine-learning-and-design-of-a-learning-system-bd12b65aa50c>
         -   <https://chrisalbon.com/>
+        -   [Interpretable Machine Learning](https://christophm.github.io/interpretable-ml-book/)
 
 ---
 
 A computer program is said to learn from experience E with respect to some class of tasks T and performance measure P, if its performance at tasks in T, as measured by P, improves with experience E.
+
+Machine learning is a subfield of AI that studies the ability to improve performance based on experience.Some AI systems use machine learning methods to achieve competence, but some do not.
 
 -   A checkers learning problem:
     -   Task T: playing checkers
@@ -33,7 +37,7 @@ A computer program is said to learn from experience E with respect to some class
 -   [Lecture 1: Supervised Learning](http://www.cs.cornell.edu/courses/cs4780/2018fa/lectures/lecturenote01%5FMLsetup.html)
 
 
-### [regression](2021-05-26--11-12-25Z--regression.md) {#regression--2021-05-26-11-12-25z-regression-dot-md}
+### [regression]({{<relref "2021-05-26--11-12-25Z--regression.md" >}}) {#regression--2021-05-26-11-12-25z-regression-dot-md}
 
 
 ### classfication {#classfication}
@@ -42,13 +46,13 @@ A computer program is said to learn from experience E with respect to some class
 ## Unsupervised {#unsupervised}
 
 
-### [clustering](2021-05-26--11-13-54Z--clustering.md) {#clustering--2021-05-26-11-13-54z-clustering-dot-md}
+### [clustering]({{<relref "2021-05-26--11-13-54Z--clustering.md" >}}) {#clustering--2021-05-26-11-13-54z-clustering-dot-md}
 
 
-### [dimensionality reduction](2021-05-26--11-16-28Z--dimensionality_reduction.md) {#dimensionality-reduction--2021-05-26-11-16-28z-dimensionality-reduction-dot-md}
+### [dimensionality reduction]({{<relref "2021-05-26--11-16-28Z--dimensionality_reduction.md" >}}) {#dimensionality-reduction--2021-05-26-11-16-28z-dimensionality-reduction-dot-md}
 
 
-## [ML Model Evaluation](20210224162319-model_evaluations_score.md) {#ml-model-evaluation--20210224162319-model-evaluations-score-dot-md}
+## [ML Model Evaluation]({{<relref "20210224162319-model_evaluations_score.md" >}}) {#ml-model-evaluation--20210224162319-model-evaluations-score-dot-md}
 
 
 ## Graph Based {#graph-based}
