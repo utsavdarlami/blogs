@@ -1,12 +1,566 @@
-<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><title>decision tree</title><meta name=description content="felladog"><meta name=author content="Utsav Darlami"><link rel="shortcut icon" href=/blogs/img/21-512.png><link rel=stylesheet href=/blogs/css/style.css><link rel=stylesheet href=/blogs/css/syntax.css><link rel=stylesheet href=/blogs/css/toc.css><link rel=stylesheet href=/blogs/katex/katex.min.css><script defer src=/blogs/katex/katex.min.js></script><script defer src=/blogs/katex/contrib/auto-render.min.js onload=renderMathInElement(document.body)></script></head><body><header></header><main><div class=toc><nav id=TableOfContents><ul><li><a href=#representation>Representation</a></li><li><a href=#when-is-decision-tree-suitable>When is Decision Tree suitable ?</a></li><li><a href=#id3>ID3</a><ul><li><a href=#entropy--2021-03-06-03-56-06z-entropy-dot-md><a href=HAHAHUGOSHORTCODE-s1-HBHB>entropy</a></a></li><li><a href=#information-gain>Information gain</a></li><li><a href=#illustrative-example>Illustrative Example</a></li></ul></li><li><a href=#hypothesis-space-search>Hypothesis Space Search</a><ul><li><a href=#limitations-and-capabilities-of-id3>Limitations and Capabilities of ID3</a></li></ul></li><li><a href=#inductive-bias--2021-06-03-11-07-01z-inductive-bias-dot-md><a href=HAHAHUGOSHORTCODE-s10-HBHB>Inductive Bias</a></a></li><li><a href=#restriction-and-preference-biases>Restriction and Preference Biases</a></li><li><a href=#why-prefer-short-hypotheses>Why prefer Short Hypotheses</a><ul><li><a href=#occam-s-razor>Occam&rsquo;s razor</a></li></ul></li><li><a href=#issues>Issues</a><ul><li><a href=#avoiding-overfitting-the-data>Avoiding overfitting the data</a></li><li><a href=#pruning-approaches>Pruning Approaches</a></li></ul></li><li><a href=#incorporating-continuous-valued-attributes>Incorporating Continuous-Valued Attributes</a></li><li><a href=#alternative-measures-for-selecting-atrributes>Alternative Measures for Selecting Atrributes</a></li><li><a href=#handling-training-examples-with-missing-attribute-values>Handling Training Examples with Missing Attribute Values</a></li><li><a href=#handling-attributes-with-differing-costs>Handling Attributes With Differing Costs</a></li></ul></nav><a href=# class=back-to-top>Back to top</a></div><script src=https://utsavdarlami.github.io/blogs/js/libs/jquery/3.3.1/jquery.slim.min.js></script><script>(function(){var a=$('#TableOfContents'),b;if(a.length>0){b=$(window);function c(){var e=b.scrollTop(),f=$('.body h1, .body h2, .body h3, .body h4, .body h5, .body h6'),c="",d;if(f.each(function(b,a){a=$(a),a.offset().top-10<=e&&(c=a.attr('id'))}),d=a.find('a.current'),d.length==1&&d.eq(0).attr('href')=='#'+c)return!0;d.each(function(b,a){$(a).removeClass('current').siblings('ul').hide()}),a.find('a[href="#'+c+'"]').parentsUntil('#TableOfContents').each(function(b,a){$(a).children('a').addClass('current').siblings('ul').show()})}b.on('scroll',c),$(document).ready(function(){a.find('a').parent('li').find('ul').hide(),c(),document.getElementsByClassName('toc')[0].style.display=''})}})()</script><p align=right><a href=https://utsavdarlami.github.io/>home</a> |
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<title>decision tree</title>
+<meta name=description content="felladog">
+<meta name=author content="Utsav Darlami">
+<link rel="shortcut icon" href=/blogs/img/21-512.png>
+<link rel=stylesheet href=/blogs/css/style.css>
+<link rel=stylesheet href=/blogs/css/syntax.css>
+<link rel=stylesheet href=/blogs/css/toc.css>
+<link rel=stylesheet href=/blogs/katex/katex.min.css>
+<script defer src=/blogs/katex/katex.min.js></script>
+<script defer src=/blogs/katex/contrib/auto-render.min.js onload=renderMathInElement(document.body)></script>
+</head>
+<body>
+<header>
+</header>
+<main>
+<div class=toc>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#representation>Representation</a></li>
+<li><a href=#when-is-decision-tree-suitable>When is Decision Tree suitable ?</a></li>
+<li><a href=#id3>ID3</a>
+<ul>
+<li><a href=#entropy--2021-03-06-03-56-06z-entropy-dot-md><a href=HAHAHUGOSHORTCODE-s1-HBHB>entropy</a></a></li>
+<li><a href=#information-gain>Information gain</a></li>
+<li><a href=#illustrative-example>Illustrative Example</a></li>
+</ul>
+</li>
+<li><a href=#hypothesis-space-search>Hypothesis Space Search</a>
+<ul>
+<li><a href=#limitations-and-capabilities-of-id3>Limitations and Capabilities of ID3</a></li>
+</ul>
+</li>
+<li><a href=#inductive-bias--2021-06-03-11-07-01z-inductive-bias-dot-md><a href=HAHAHUGOSHORTCODE-s10-HBHB>Inductive Bias</a></a></li>
+<li><a href=#restriction-and-preference-biases>Restriction and Preference Biases</a></li>
+<li><a href=#why-prefer-short-hypotheses>Why prefer Short Hypotheses</a>
+<ul>
+<li><a href=#occam-s-razor>Occam&rsquo;s razor</a></li>
+</ul>
+</li>
+<li><a href=#issues>Issues</a>
+<ul>
+<li><a href=#avoiding-overfitting-the-data>Avoiding overfitting the data</a></li>
+<li><a href=#pruning-approaches>Pruning Approaches</a></li>
+</ul>
+</li>
+<li><a href=#incorporating-continuous-valued-attributes>Incorporating Continuous-Valued Attributes</a></li>
+<li><a href=#alternative-measures-for-selecting-atrributes>Alternative Measures for Selecting Atrributes</a></li>
+<li><a href=#handling-training-examples-with-missing-attribute-values>Handling Training Examples with Missing Attribute Values</a></li>
+<li><a href=#handling-attributes-with-differing-costs>Handling Attributes With Differing Costs</a></li>
+</ul>
+</nav>
+<a href=# class=back-to-top>Back to top</a>
+</div>
+<script src=https://utsavdarlami.github.io/blogs/js/libs/jquery/3.3.1/jquery.slim.min.js></script>
+<script>(function(){var a=$('#TableOfContents'),b;if(a.length>0){b=$(window);function c(){var e=b.scrollTop(),f=$('.body h1, .body h2, .body h3, .body h4, .body h5, .body h6'),c="",d;if(f.each(function(b,a){a=$(a),a.offset().top-10<=e&&(c=a.attr('id'))}),d=a.find('a.current'),d.length==1&&d.eq(0).attr('href')=='#'+c)return!0;d.each(function(b,a){$(a).removeClass('current').siblings('ul').hide()}),a.find('a[href="#'+c+'"]').parentsUntil('#TableOfContents').each(function(b,a){$(a).children('a').addClass('current').siblings('ul').show()})}b.on('scroll',c),$(document).ready(function(){a.find('a').parent('li').find('ul').hide(),c(),document.getElementsByClassName('toc')[0].style.display=''})}})()</script>
+<p align=right>
+<a href=https://utsavdarlami.github.io/>home</a> |
 <a href=https://utsavdarlami.github.io/blogs/>blogs</a> |
 <a href=https://utsavdarlami.github.io/blogs/notes>notes</a> |
 <a href=https://utsavdarlami.github.io/blogs/about>about me</a> |
 <a href=https://utsavdarlami.github.io/blogs/tags>tags</a> |
 <a href=https://utsavdarlami.github.io/blogs/categories>categories</a> |
-<a href=https://utsavdarlami.github.io/blogs/index.xml>feed</a></p><article><h1>decision tree</h1><div style=float:left><time>Created Date : 2021 June 03</time></div><br><div style=float:left><time>Last Modified : 2021 July 17</time></div><hr><div>tags:
+<a href=https://utsavdarlami.github.io/blogs/index.xml>feed</a>
+</p>
+<article>
+<h1>decision tree</h1>
+<div style=float:left><time>Created Date : 2021 June 03</time></div>
+<br>
+<div style=float:left><time>Last Modified : 2021 July 17</time></div>
+<hr>
+<div>
+tags:
 <a href=/blogs/tags/entropy>entropy</a>
 <a href=/blogs/tags/id3>ID3</a>
-<a href=/blogs/tags/information-gain>information gain</a></div><div style=float:left>categories:
-<a href=/blogs/categories/machine-learning>machine learning</a></div><div><hr><ul><li><p>References :</p><ul><li>Reading :<ul><li>Tom Mitchell Lectures slides of chapter 3</li><li>Tom Mitchell, Machine Learning Chapter 3</li><li>ID3 algorithm complete solution<ul><li><a href=https://www.reddit.com/r/learnmachinelearning/comments/nmsdhs/i%5Fsolved%5Fa%5Fid3%5Falgorithm%5Fin%5Fmachine%5Flearning/>Reddit Post Link</a></li><li><a href=https://drive.google.com/file/d/1b2ocYqBxl3oX2o0S-dLgbVVNSGGamUel/view>Drive Pdf Link</a></li></ul></li></ul></li><li>To Read :<ul><li><a href=https://medium.com/@pralhad2481/chapter-3-decision-tree-learning-part-1-d0ca2365bb22>Chapter 3 — Decision Tree Learning — Part 1</a></li></ul></li></ul></li><li><p>Questions :</p></li></ul><hr><ul><li>Approximating discrete-valued fucntions</li><li>robust to noisy data</li><li>capable of learning disjunctive expressions</li><li>search a completely expressive hypothesis space and thus avoid the difficulties of restricted hypothesis spaces.</li></ul><h2 id=representation>Representation</h2><ul><li>Decision trees classify instances by sorting them down the tree from the root to some leaf node</li><li>each leaf node assigns a classification</li><li>each interal node specifies a test of some attributes of the instances</li><li>each branch descending from a node corresponds to one of the possible values of the attribute represented by that node.</li></ul><figure><img src=/blogs/ox-hugo/dt_1.png width=600 height=400></figure><ul><li>For the instance &lt;Outlook = Sunny, Temperature = Hot, Humidity = High, Wind=Strong><ul><li>PlayTennis = no</li></ul></li><li>In general, decision trees represent a disjunction of conjunctions of constraints on the attribute values of instances.</li><li>Each path from the tree root to a leaf corresponds to a conjunction of attribute tests, and the tree itself to a disjunction of these conjunctions.</li></ul><h2 id=when-is-decision-tree-suitable>When is Decision Tree suitable ?</h2><ol><li>Instances are represented by many attribute value pairs.</li><li>The target function output may be<ul><li>discrete-valued,</li><li>with certain extension can be used for real-valued output</li></ul></li><li>The training examples may contain noises/errors</li><li>Disjunctive descriptions may be required</li><li>The training data may contain missing attribute values</li></ol><h2 id=id3>ID3</h2><ul><li>Basic algorithm for learning decision tree.</li><li>&ldquo;Which attribute should be tested at the root of the tree?&rdquo;<ul><li>Which attribute to test at each node in the tree</li></ul></li></ul><h3 id=entropy--2021-03-06-03-56-06z-entropy-dot-md><a href=/blogs/notes/2021-03-06-03-56-06z-entropy/>entropy</a></h3><ul><li>Given a collection 5, containing positive and negative examples of some target concept, the entropy of S relative to this boolean classification is<ul><li>\( Entropy(S) = - p_{\oplus} log_2 p_{\oplus} - p_{\ominus} log_2 p_{\ominus} \)</li><li>where, \(p_{\oplus}\) is the proportion of positive examples in S and,</li><li>\(p_{\ominus}\) is the proportion of negative examples in S.</li></ul></li><li>Example,<ul><li>Entropy([9+, 5-]) = 0.940</li></ul></li><li>Entropy is<ul><li>0 if all members of S belong to the same class.</li><li>1 when the collection contains an equal number of positive and negative examples.</li></ul></li></ul><figure><img src=/blogs/ox-hugo/dt_ent1.png width=700 height=300></figure><ul><li>If the target attribute can take on c different values, then the entropy of S relative to this c-wise classification is defined as<ul><li>\( Entropy(S) = \sum_{i=1}^{c} - p_i log_2 p_i \) , where \(p_i\), is the proportion of S belonging to class i.</li></ul></li></ul><h3 id=information-gain>Information gain</h3><ul><li>measures how well a given attribute separates the training examples according to their target classification.</li><li>ID3 uses it to select attributes among the candidate attributes at each step while growing the tree.</li><li>It is the expected reduction in the entropy caused by partitioning the examples based on the attributes</li><li>the information gain, Gain(S, A) of an attribute A, relative to a collection of examples S, is defined as<ul><li>\( Gain(S,A) = Entropy(S) - \sum_{v \in Values(A)} \frac{|S_v|}{|S|} Entropy(S_v) \)</li><li>where, Values(A) is the set of all possible values for attribute A,</li><li>\(S_v\) is the subset of S for which attribute A has value v (i.e., \( S_v = \{s \in S|A(s) = v\}) \).</li><li>the first term is just the entropy of the original collection S,</li><li>and the second term is the expected value of the entropy after S is partitioned using attribute A.</li></ul></li><li>Gain(S, A) is<ul><li>the information provided about the target function value, given the value of some other attribute A.</li><li>the number of bits saved when encoding the target value of an arbitrary member of S, by knowing the value of attribute A.</li></ul></li></ul><h3 id=illustrative-example>Illustrative Example</h3><figure><img src=/blogs/ox-hugo/dt_eg.png width=500 height=380></figure><figure><img src=/blogs/ox-hugo/dt_root.png width=600 height=400></figure><ul><li>The information gain values for all four attributes are<ul><li>Gain(S, Outlook) = 0.246</li><li>Gain(S, Humidity) = 0.151</li><li>Gain(S, Wind) = 0.048</li><li>Gain(S, Temperature) = 0.029</li></ul></li></ul><figure><img src=/blogs/ox-hugo/dt_final_eg.png width=600 height=540></figure><ul><li>ID3 algorithm complete solution<ul><li><a href=https://www.reddit.com/r/learnmachinelearning/comments/nmsdhs/i%5Fsolved%5Fa%5Fid3%5Falgorithm%5Fin%5Fmachine%5Flearning/>Reddit Post Link</a></li></ul></li></ul><h2 id=hypothesis-space-search>Hypothesis Space Search</h2><ul><li>ID3 performs a simple-to-complex, hill-climbing search through hypothesis space,<ul><li>beginning with the empty tree,</li><li>then considering progressively more elaborate hypotheses in search of decision tree that correctly classifies the training data.</li></ul></li><li>hill-climbing search is guided information gain measure.</li></ul><figure><img src=/blogs/ox-hugo/id3_search.png width=610 height=420></figure><h3 id=limitations-and-capabilities-of-id3>Limitations and Capabilities of ID3</h3><ul><li>ID3&rsquo;s hypothesis space of all decision trees is a complete space of finite discrete-valued functions, relative to the available attributes.<ul><li>Thus, avoids one of the major risks of methods that search incomplete hypothesis spaces(such as methods that consider only conjunctive hypotheses): that the hypothesis space might not contain the target function.</li></ul></li><li>Maintains only a single current hypothesis as it searches through the space of decision trees.<ul><li>wheras, <a href=/blogs/notes/2021-06-04-14-08-26z-concept_learning/>Candidate-Elimination Learning Algorithm</a>, which maintains the set of all hypotheses consistent with the available training examples.</li><li>it does not have the ability to determine how many alternative decision trees are consistent with the available training data,</li></ul></li><li>ID3 in its pure form performs no backtracking in its search.<ul><li>usually risks of hill-climbing search without backtracking: converging to locally optimal solutions that are not globally optimal.</li></ul></li><li>ID3 uses all training examples at each step in the search to make statistically based decisions regarding how to refine its current hypothesis.<ul><li>contrasts with methods that make decisions incrementally, based on individual training examples (e.g., <a href=/blogs/notes/2021-06-04-14-08-26z-concept_learning/>Find-S</a> or <a href=/blogs/notes/2021-06-04-14-08-26z-concept_learning/>Candidate-Elimination Learning Algorithm</a>)</li><li>Advantage is that the resulting search is much less sensitive to errors in individual training examples.</li></ul></li></ul><h2 id=inductive-bias--2021-06-03-11-07-01z-inductive-bias-dot-md><a href=/blogs/notes/2021-06-03-11-07-01z-inductive_bias/>Inductive Bias</a></h2><ul><li><p>the ID3 search strategy</p><ol><li>selects in favor of shorter trees over longer ones, and</li><li>selects trees that place the attributes with highest information gain closest to the root.</li></ol></li><li><p><strong>Approximate inductive bias of ID3</strong>:</p><ul><li>Shorter trees are preferred over larger trees.</li></ul></li><li><p>BFS-ID3, Breadth First Search for ID3</p></li><li><p><strong>A closer approximation to the inductive bias of ID3</strong>:</p><ul><li>Shorter trees are preferred over longer trees. Trees that place high information gain attributes close to the root are preferred over those that do not.</li></ul></li></ul><h2 id=restriction-and-preference-biases>Restriction and Preference Biases</h2><ul><li>the inductive bias of<ul><li>ID3 follows from its <strong>search strategy</strong>,</li><li>Candidate-Elimination algorithm follows from the definition of its <strong>search space</strong>.</li></ul></li><li>ID3 exhibits a purely preference bias(search bias), and<ul><li>A preference for certain hypotheses over others (e.g., for shorter hypotheses), with no hard restriction on the hypotheses thatcan be eventually enumerated.</li></ul></li><li>Candidate-Elimination purely restriction bias(language bias).<ul><li>Categorical restriction on the set of hypotheses considered.</li></ul></li><li>A preference bias is more desirable than a restriction bias,<ul><li>because it allows the learner to work within a complete hypothesis space that is assured to contain the unknown target function.</li></ul></li></ul><h2 id=why-prefer-short-hypotheses>Why prefer Short Hypotheses</h2><h3 id=occam-s-razor>Occam&rsquo;s razor</h3><ul><li>Prefer the simplest hypothesis that fits the data.</li><li>Why? (Argument in Favor)<ul><li>One argument is that because there are fewer short hypotheses than long ones, it is less likely that one will find a short hypothesis that coincidentally fits the training data.</li><li>In contrast there are often many very complex hypotheses that fit the current training data but fail to generalize correctly to subsequent data.</li></ul></li><li>Argument Opposed<ul><li>There are many ways to define small sets of hypothesis</li></ul></li></ul><h2 id=issues>Issues</h2><ul><li>Practical issues in learning decision trees :<ul><li>determining how deeply to grow the decision tree,</li><li>handling continuous attributes,</li><li>choosing an appropriate attribute selection measure,</li><li>handling training data with missing attribute values,</li><li>handling attributes with differing costs,</li><li>and improving computational efficiency.</li></ul></li></ul><h3 id=avoiding-overfitting-the-data>Avoiding overfitting the data</h3><figure><img src=/blogs/ox-hugo/dt_overfit.png width=600 height=430></figure><ul><li><p>Overfitting</p><ul><li><p>Given a hypothesis space H, a hypothesis \(h \in H\) is said to overfit the training data if there exists some alternative hypothesis \(h' \in H\), such that h has smaller error than h' over the training examples, but h' has a smaller error than h over the entire distribution of instances.</p></li><li><p>\( error_{train}(h) &lt; error_{train}(h') \)</p></li><li><p>\( error_{D}(h) > error_{D}(h') \)</p></li></ul></li><li><p>This could be due to</p><ul><li>Random errors and noise in the data, or</li><li>The number of training examples is too small to produce a representative sample of the true target function.</li></ul></li><li><p>Approaches to avoid overfitting</p></li><li><p>Stop growing the tree earlier, before it reaches the point where it perfectly classifies the training data,</p><ul><li>stop growing when data split not statistically significant</li><li>seems to be more direct but difficulty in the estimating precisely when to stop growing the tree.</li></ul></li><li><p>Allow the tree to overfit the data, and then post-prune the tree.</p><ul><li>sucessful in practice</li></ul></li><li><p>How to select &ldquo;best&rdquo; tree</p></li><li><p>Use a separate set of examples, distinct from the training examples, to evaluate the utility of post-pruning nodes from the tree.</p><ul><li>training and validation set approach.</li></ul></li><li><p>Use all the available data for training, but apply a statistical test to estimate whether expanding (or pruning) a particular node is likely to produce an improvement beyond the training set.</p><ul><li>Quinlan(1986) uses a chi-square test to estimate whether further expanding a node is likely to improve performance over the entire instance distribution, or only on the current sample of training data.</li></ul></li><li><p>Use an explicit measure of the complexity for encoding the training examples and the decision tree, halting growth of the tree when this encoding size is minimized.</p><ul><li>The Minimum Description Length principle,</li><li>\( size(tree) + size(missclassifcations(tree)) \)</li></ul></li></ul><h3 id=pruning-approaches>Pruning Approaches</h3><h4 id=pruning-by-reducing-the-error>Pruning by reducing the error</h4><ul><li>reduced-error pruning (Quinlan 1987), consider each of the decision nodes in the tree to be candidates for pruning.</li><li>Pruning a decision node consists of removing the subtree rooted at that node, making it a leaf node, and assigning it the most common classification of the training examples affiliated with that node.</li><li>Nodes are removed only if the resulting pruned tree performs no worse than the original over the validation set.<ul><li>effect of any leaf node added due to coincidental regularities in the training set is likely to be pruned because these same coincidences are unlikely to occur in the validation set.</li></ul></li><li>Nodes are pruned iteratively, always choosing the node whose removal most increases the decision tree accuracy over the validation set.</li><li>Pruning of nodes continues until further pruning is harmful (i.e., decreases accuracy of the tree over the validation set).</li></ul><figure><img src=/blogs/ox-hugo/dt_error_pruning.png width=600 height=430></figure><h4 id=rule-post-pruning>Rule Post Pruning</h4><ul><li>by C4.5 (Quinlan 1993),</li><li>Involves the following steps:<ul><li>Infer the decision tree from the training set, growing the tree until the training data is fit as well as possible and allowing overfitting to occur.</li><li>Convert the learned tree into an equivalent set of rules by creating one rule for each path from the root node to a leaf node.</li><li>Prune (generalize) each rule by removing any pre conditions that result in improving its estimated accuracy.</li><li>Sort the pruned rules by their estimated accuracy, and consider them in this sequence when classifying subsequent instances.</li></ul></li><li>From figure of decision tree<ul><li>IF (outlook = Sunny) and (Humidity = High)<ul><li>THEN PlayTennis = No</li></ul></li><li>IF (outlook = Sunny) and (Humidity = Normal)<ul><li>THEN PlayTennis = Yes</li></ul></li></ul></li><li>Why convert tree to set of rules<ul><li>allows distinguishing among the different contexts in which a decision node is used.</li><li>removes the distinction between attribute tests that occurnear the root of the tree and those that occur near the leaves.</li><li>improves readability.</li></ul></li></ul><h2 id=incorporating-continuous-valued-attributes>Incorporating Continuous-Valued Attributes</h2><ul><li>Restriction is &ldquo;the attributes tested in the decision nodes ofthe tree must also be discrete valued&rdquo;.</li><li>This restriction can be removed.<ul><li>dynamically defining new discrete-valued attributes that partition the continuous attribute value into a discrete set of intervals.</li></ul></li><li>In particular, for an attribute A that is continuous-valued, the algorithm can dynamically create a new boolean attribute \(A_c\) that is true if A &lt; cand false otherwise.</li><li>for the threshold c.<ul><li>pick a threshold, c, that produces the greatest <a href=#information-gain>Information gain</a>.</li></ul></li><li>value of c that maximizes information gain must always lie at a boundary of sorted examples according to the continuous attribute(Fayyad 1991).</li></ul><h2 id=alternative-measures-for-selecting-atrributes>Alternative Measures for Selecting Atrributes</h2><ul><li>gain ratio (Quinlan 1986).</li><li>The gain ratio measure penalizes attributes having many value(Date = June 03 1996) attributes by incorporating a term, called split information, that is sensitive to how broadly and uniformly the attribute splits the data:<ul><li>\( SplitInformation(S, A) \equiv - \sum_{i=1}^{c} \frac{|S_i|}{|S|} log_2{\frac{|S_i|}{|S|}} \)</li><li>where \(S_i\) through \(S_c\) are the c subsets of examples resulting from partitioning S by the c-valued attribute A.</li></ul></li><li>SplitInformation is actually the entropy of S with respect to the values of attribute A.</li><li>The GainRatio measure is defined in terms of the earlier Gain measure, as well as this Splitlnformation, as follows<ul><li>\( GainRatio(S, A) \equiv \frac{Gain(S,A)}{SplitInformation(S,A)} \)</li></ul></li><li>SplitInformation term discourages the selection of attributes with many uniformly distributed values.</li></ul><h2 id=handling-training-examples-with-missing-attribute-values>Handling Training Examples with Missing Attribute Values</h2><ul><li>Use training example anywat, sort through tree<ul><li>If node n tests A, assign most commom value of A among other examples sorted to node n</li><li>Assign most common value of A among other examples with same target value</li><li>Assign probalility of \(p_i\) to each posssible value \(v_i\) of A<ul><li>assign fraction of \(p_i\) of example to each descendant in tree</li></ul></li></ul></li><li>classify new example in similar fashion</li></ul><h2 id=handling-attributes-with-differing-costs>Handling Attributes With Differing Costs</h2><ul><li>prefer decision trees that use low-cost attributes where possible, relying on high-cost attributes only when needed to produce reliable classifications.</li><li>Replace gain by<ul><li>Tan and Schlimmer(1990) and Tan(1993)<ul><li>\( \frac{Gain^2(S,A)}{Cost(A)} \)</li><li>Can be applied to a robot perception task</li></ul></li><li>Nunez(1998)<ul><li>\( \frac{2^{Gain(S,A)} - 1}{(Cost(A) + 1)^w} \)</li><li>where \( w \in [0,1] \) is a constant that determines the relative importance of cost versus information gain.</li></ul></li></ul></li></ul></div><p style=font-size:1.65em;text-align:center><a href=/blogs/notes/2021-05-31-03-54-38z-edge_filters/>&#8678;</a>
-<a href=/blogs/notes/2021-06-03-11-07-01z-inductive_bias/>&#8680;</a></p><hr><div class=bl-section><h4>Links to this note</h4><div class=backlinks><ul><li><a href=/blogs/notes/2021-05-26-11-31-31z-neural_network/>neural network</a></li></ul></div></div><hr><footer><main><h3>Comments</h3><script src=https://utteranc.es/client.js repo=utsavdarlami/blogs issue-term=pathname label=comment theme=github-light crossorigin=anonymous async></script></main></footer></article></main><footer></footer></body></html>
+<a href=/blogs/tags/information-gain>information gain</a>
+</div>
+<div style=float:left>
+categories:
+<a href=/blogs/categories/machine-learning>machine learning</a>
+</div>
+<div>
+<hr>
+<ul>
+<li>
+<p>References :</p>
+<ul>
+<li>Reading :
+<ul>
+<li>Tom Mitchell Lectures slides of chapter 3</li>
+<li>Tom Mitchell, Machine Learning Chapter 3</li>
+<li>ID3 algorithm complete solution
+<ul>
+<li><a href=https://www.reddit.com/r/learnmachinelearning/comments/nmsdhs/i%5Fsolved%5Fa%5Fid3%5Falgorithm%5Fin%5Fmachine%5Flearning/>Reddit Post Link</a></li>
+<li><a href=https://drive.google.com/file/d/1b2ocYqBxl3oX2o0S-dLgbVVNSGGamUel/view>Drive Pdf Link</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>To Read :
+<ul>
+<li><a href=https://medium.com/@pralhad2481/chapter-3-decision-tree-learning-part-1-d0ca2365bb22>Chapter 3 — Decision Tree Learning — Part 1</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Questions :</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>Approximating discrete-valued fucntions</li>
+<li>robust to noisy data</li>
+<li>capable of learning disjunctive expressions</li>
+<li>search a completely expressive hypothesis space and thus avoid the difficulties of restricted hypothesis spaces.</li>
+</ul>
+<h2 id=representation>Representation</h2>
+<ul>
+<li>Decision trees classify instances by sorting them down the tree from the root to some leaf node</li>
+<li>each leaf node assigns a classification</li>
+<li>each interal node specifies a test of some attributes of the instances</li>
+<li>each branch descending from a node corresponds to one of the possible values of the attribute represented by that node.</li>
+</ul>
+<figure>
+<img src=/blogs/ox-hugo/dt_1.png width=600 height=400>
+</figure>
+<ul>
+<li>For the instance &lt;Outlook = Sunny, Temperature = Hot, Humidity = High, Wind=Strong>
+<ul>
+<li>PlayTennis = no</li>
+</ul>
+</li>
+<li>In general, decision trees represent a disjunction of conjunctions of constraints on the attribute values of instances.</li>
+<li>Each path from the tree root to a leaf corresponds to a conjunction of attribute tests, and the tree itself to a disjunction of these conjunctions.</li>
+</ul>
+<h2 id=when-is-decision-tree-suitable>When is Decision Tree suitable ?</h2>
+<ol>
+<li>Instances are represented by many attribute value pairs.</li>
+<li>The target function output may be
+<ul>
+<li>discrete-valued,</li>
+<li>with certain extension can be used for real-valued output</li>
+</ul>
+</li>
+<li>The training examples may contain noises/errors</li>
+<li>Disjunctive descriptions may be required</li>
+<li>The training data may contain missing attribute values</li>
+</ol>
+<h2 id=id3>ID3</h2>
+<ul>
+<li>Basic algorithm for learning decision tree.</li>
+<li>&ldquo;Which attribute should be tested at the root of the tree?&rdquo;
+<ul>
+<li>Which attribute to test at each node in the tree</li>
+</ul>
+</li>
+</ul>
+<h3 id=entropy--2021-03-06-03-56-06z-entropy-dot-md><a href=/blogs/notes/2021-03-06-03-56-06z-entropy/>entropy</a></h3>
+<ul>
+<li>Given a collection 5, containing positive and negative examples of some target concept, the entropy of S relative to this boolean classification is
+<ul>
+<li>\( Entropy(S) = - p_{\oplus} log_2 p_{\oplus} - p_{\ominus} log_2 p_{\ominus} \)</li>
+<li>where, \(p_{\oplus}\) is the proportion of positive examples in S and,</li>
+<li>\(p_{\ominus}\) is the proportion of negative examples in S.</li>
+</ul>
+</li>
+<li>Example,
+<ul>
+<li>Entropy([9+, 5-]) = 0.940</li>
+</ul>
+</li>
+<li>Entropy is
+<ul>
+<li>0 if all members of S belong to the same class.</li>
+<li>1 when the collection contains an equal number of positive and negative examples.</li>
+</ul>
+</li>
+</ul>
+<figure>
+<img src=/blogs/ox-hugo/dt_ent1.png width=700 height=300>
+</figure>
+<ul>
+<li>If the target attribute can take on c different values, then the entropy of S relative to this c-wise classification is defined as
+<ul>
+<li>\( Entropy(S) = \sum_{i=1}^{c} - p_i log_2 p_i \) , where \(p_i\), is the proportion of S belonging to class i.</li>
+</ul>
+</li>
+</ul>
+<h3 id=information-gain>Information gain</h3>
+<ul>
+<li>measures how well a given attribute separates the training examples according to their target classification.</li>
+<li>ID3 uses it to select attributes among the candidate attributes at each step while growing the tree.</li>
+<li>It is the expected reduction in the entropy caused by partitioning the examples based on the attributes</li>
+<li>the information gain, Gain(S, A) of an attribute A, relative to a collection of examples S, is defined as
+<ul>
+<li>\( Gain(S,A) = Entropy(S) - \sum_{v \in Values(A)} \frac{|S_v|}{|S|} Entropy(S_v) \)</li>
+<li>where, Values(A) is the set of all possible values for attribute A,</li>
+<li>\(S_v\) is the subset of S for which attribute A has value v (i.e., \( S_v = \{s \in S|A(s) = v\}) \).</li>
+<li>the first term is just the entropy of the original collection S,</li>
+<li>and the second term is the expected value of the entropy after S is partitioned using attribute A.</li>
+</ul>
+</li>
+<li>Gain(S, A) is
+<ul>
+<li>the information provided about the target function value, given the value of some other attribute A.</li>
+<li>the number of bits saved when encoding the target value of an arbitrary member of S, by knowing the value of attribute A.</li>
+</ul>
+</li>
+</ul>
+<h3 id=illustrative-example>Illustrative Example</h3>
+<figure>
+<img src=/blogs/ox-hugo/dt_eg.png width=500 height=380>
+</figure>
+<figure>
+<img src=/blogs/ox-hugo/dt_root.png width=600 height=400>
+</figure>
+<ul>
+<li>The information gain values for all four attributes are
+<ul>
+<li>Gain(S, Outlook) = 0.246</li>
+<li>Gain(S, Humidity) = 0.151</li>
+<li>Gain(S, Wind) = 0.048</li>
+<li>Gain(S, Temperature) = 0.029</li>
+</ul>
+</li>
+</ul>
+<figure>
+<img src=/blogs/ox-hugo/dt_final_eg.png width=600 height=540>
+</figure>
+<ul>
+<li>ID3 algorithm complete solution
+<ul>
+<li><a href=https://www.reddit.com/r/learnmachinelearning/comments/nmsdhs/i%5Fsolved%5Fa%5Fid3%5Falgorithm%5Fin%5Fmachine%5Flearning/>Reddit Post Link</a></li>
+</ul>
+</li>
+</ul>
+<h2 id=hypothesis-space-search>Hypothesis Space Search</h2>
+<ul>
+<li>ID3 performs a simple-to-complex, hill-climbing search through hypothesis space,
+<ul>
+<li>beginning with the empty tree,</li>
+<li>then considering progressively more elaborate hypotheses in search of decision tree that correctly classifies the training data.</li>
+</ul>
+</li>
+<li>hill-climbing search is guided information gain measure.</li>
+</ul>
+<figure>
+<img src=/blogs/ox-hugo/id3_search.png width=610 height=420>
+</figure>
+<h3 id=limitations-and-capabilities-of-id3>Limitations and Capabilities of ID3</h3>
+<ul>
+<li>ID3&rsquo;s hypothesis space of all decision trees is a complete space of finite discrete-valued functions, relative to the available attributes.
+<ul>
+<li>Thus, avoids one of the major risks of methods that search incomplete hypothesis spaces(such as methods that consider only conjunctive hypotheses): that the hypothesis space might not contain the target function.</li>
+</ul>
+</li>
+<li>Maintains only a single current hypothesis as it searches through the space of decision trees.
+<ul>
+<li>wheras, <a href=/blogs/notes/2021-06-04-14-08-26z-concept_learning/>Candidate-Elimination Learning Algorithm</a>, which maintains the set of all hypotheses consistent with the available training examples.</li>
+<li>it does not have the ability to determine how many alternative decision trees are consistent with the available training data,</li>
+</ul>
+</li>
+<li>ID3 in its pure form performs no backtracking in its search.
+<ul>
+<li>usually risks of hill-climbing search without backtracking: converging to locally optimal solutions that are not globally optimal.</li>
+</ul>
+</li>
+<li>ID3 uses all training examples at each step in the search to make statistically based decisions regarding how to refine its current hypothesis.
+<ul>
+<li>contrasts with methods that make decisions incrementally, based on individual training examples (e.g., <a href=/blogs/notes/2021-06-04-14-08-26z-concept_learning/>Find-S</a> or <a href=/blogs/notes/2021-06-04-14-08-26z-concept_learning/>Candidate-Elimination Learning Algorithm</a>)</li>
+<li>Advantage is that the resulting search is much less sensitive to errors in individual training examples.</li>
+</ul>
+</li>
+</ul>
+<h2 id=inductive-bias--2021-06-03-11-07-01z-inductive-bias-dot-md><a href=/blogs/notes/2021-06-03-11-07-01z-inductive_bias/>Inductive Bias</a></h2>
+<ul>
+<li>
+<p>the ID3 search strategy</p>
+<ol>
+<li>selects in favor of shorter trees over longer ones, and</li>
+<li>selects trees that place the attributes with highest information gain closest to the root.</li>
+</ol>
+</li>
+<li>
+<p><strong>Approximate inductive bias of ID3</strong>:</p>
+<ul>
+<li>Shorter trees are preferred over larger trees.</li>
+</ul>
+</li>
+<li>
+<p>BFS-ID3, Breadth First Search for ID3</p>
+</li>
+<li>
+<p><strong>A closer approximation to the inductive bias of ID3</strong>:</p>
+<ul>
+<li>Shorter trees are preferred over longer trees. Trees that place high information gain attributes close to the root are preferred over those that do not.</li>
+</ul>
+</li>
+</ul>
+<h2 id=restriction-and-preference-biases>Restriction and Preference Biases</h2>
+<ul>
+<li>the inductive bias of
+<ul>
+<li>ID3 follows from its <strong>search strategy</strong>,</li>
+<li>Candidate-Elimination algorithm follows from the definition of its <strong>search space</strong>.</li>
+</ul>
+</li>
+<li>ID3 exhibits a purely preference bias(search bias), and
+<ul>
+<li>A preference for certain hypotheses over others (e.g., for shorter hypotheses), with no hard restriction on the hypotheses thatcan be eventually enumerated.</li>
+</ul>
+</li>
+<li>Candidate-Elimination purely restriction bias(language bias).
+<ul>
+<li>Categorical restriction on the set of hypotheses considered.</li>
+</ul>
+</li>
+<li>A preference bias is more desirable than a restriction bias,
+<ul>
+<li>because it allows the learner to work within a complete hypothesis space that is assured to contain the unknown target function.</li>
+</ul>
+</li>
+</ul>
+<h2 id=why-prefer-short-hypotheses>Why prefer Short Hypotheses</h2>
+<h3 id=occam-s-razor>Occam&rsquo;s razor</h3>
+<ul>
+<li>Prefer the simplest hypothesis that fits the data.</li>
+<li>Why? (Argument in Favor)
+<ul>
+<li>One argument is that because there are fewer short hypotheses than long ones, it is less likely that one will find a short hypothesis that coincidentally fits the training data.</li>
+<li>In contrast there are often many very complex hypotheses that fit the current training data but fail to generalize correctly to subsequent data.</li>
+</ul>
+</li>
+<li>Argument Opposed
+<ul>
+<li>There are many ways to define small sets of hypothesis</li>
+</ul>
+</li>
+</ul>
+<h2 id=issues>Issues</h2>
+<ul>
+<li>Practical issues in learning decision trees :
+<ul>
+<li>determining how deeply to grow the decision tree,</li>
+<li>handling continuous attributes,</li>
+<li>choosing an appropriate attribute selection measure,</li>
+<li>handling training data with missing attribute values,</li>
+<li>handling attributes with differing costs,</li>
+<li>and improving computational efficiency.</li>
+</ul>
+</li>
+</ul>
+<h3 id=avoiding-overfitting-the-data>Avoiding overfitting the data</h3>
+<figure>
+<img src=/blogs/ox-hugo/dt_overfit.png width=600 height=430>
+</figure>
+<ul>
+<li>
+<p>Overfitting</p>
+<ul>
+<li>
+<p>Given a hypothesis space H, a hypothesis \(h \in H\) is said to overfit the training data if there exists some alternative hypothesis \(h' \in H\), such that h has smaller error than h' over the training examples, but h' has a smaller error than h over the entire distribution of instances.</p>
+</li>
+<li>
+<p>\( error_{train}(h) &lt; error_{train}(h') \)</p>
+</li>
+<li>
+<p>\( error_{D}(h) > error_{D}(h') \)</p>
+</li>
+</ul>
+</li>
+<li>
+<p>This could be due to</p>
+<ul>
+<li>Random errors and noise in the data, or</li>
+<li>The number of training examples is too small to produce a representative sample of the true target function.</li>
+</ul>
+</li>
+<li>
+<p>Approaches to avoid overfitting</p>
+</li>
+<li>
+<p>Stop growing the tree earlier, before it reaches the point where it perfectly classifies the training data,</p>
+<ul>
+<li>stop growing when data split not statistically significant</li>
+<li>seems to be more direct but difficulty in the estimating precisely when to stop growing the tree.</li>
+</ul>
+</li>
+<li>
+<p>Allow the tree to overfit the data, and then post-prune the tree.</p>
+<ul>
+<li>sucessful in practice</li>
+</ul>
+</li>
+<li>
+<p>How to select &ldquo;best&rdquo; tree</p>
+</li>
+<li>
+<p>Use a separate set of examples, distinct from the training examples, to evaluate the utility of post-pruning nodes from the tree.</p>
+<ul>
+<li>training and validation set approach.</li>
+</ul>
+</li>
+<li>
+<p>Use all the available data for training, but apply a statistical test to estimate whether expanding (or pruning) a particular node is likely to produce an improvement beyond the training set.</p>
+<ul>
+<li>Quinlan(1986) uses a chi-square test to estimate whether further expanding a node is likely to improve performance over the entire instance distribution, or only on the current sample of training data.</li>
+</ul>
+</li>
+<li>
+<p>Use an explicit measure of the complexity for encoding the training examples and the decision tree, halting growth of the tree when this encoding size is minimized.</p>
+<ul>
+<li>The Minimum Description Length principle,</li>
+<li>\( size(tree) + size(missclassifcations(tree)) \)</li>
+</ul>
+</li>
+</ul>
+<h3 id=pruning-approaches>Pruning Approaches</h3>
+<h4 id=pruning-by-reducing-the-error>Pruning by reducing the error</h4>
+<ul>
+<li>reduced-error pruning (Quinlan 1987), consider each of the decision nodes in the tree to be candidates for pruning.</li>
+<li>Pruning a decision node consists of removing the subtree rooted at that node, making it a leaf node, and assigning it the most common classification of the training examples affiliated with that node.</li>
+<li>Nodes are removed only if the resulting pruned tree performs no worse than the original over the validation set.
+<ul>
+<li>effect of any leaf node added due to coincidental regularities in the training set is likely to be pruned because these same coincidences are unlikely to occur in the validation set.</li>
+</ul>
+</li>
+<li>Nodes are pruned iteratively, always choosing the node whose removal most increases the decision tree accuracy over the validation set.</li>
+<li>Pruning of nodes continues until further pruning is harmful (i.e., decreases accuracy of the tree over the validation set).</li>
+</ul>
+<figure>
+<img src=/blogs/ox-hugo/dt_error_pruning.png width=600 height=430>
+</figure>
+<h4 id=rule-post-pruning>Rule Post Pruning</h4>
+<ul>
+<li>by C4.5 (Quinlan 1993),</li>
+<li>Involves the following steps:
+<ul>
+<li>Infer the decision tree from the training set, growing the tree until the training data is fit as well as possible and allowing overfitting to occur.</li>
+<li>Convert the learned tree into an equivalent set of rules by creating one rule for each path from the root node to a leaf node.</li>
+<li>Prune (generalize) each rule by removing any pre conditions that result in improving its estimated accuracy.</li>
+<li>Sort the pruned rules by their estimated accuracy, and consider them in this sequence when classifying subsequent instances.</li>
+</ul>
+</li>
+<li>From figure of decision tree
+<ul>
+<li>IF (outlook = Sunny) and (Humidity = High)
+<ul>
+<li>THEN PlayTennis = No</li>
+</ul>
+</li>
+<li>IF (outlook = Sunny) and (Humidity = Normal)
+<ul>
+<li>THEN PlayTennis = Yes</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Why convert tree to set of rules
+<ul>
+<li>allows distinguishing among the different contexts in which a decision node is used.</li>
+<li>removes the distinction between attribute tests that occurnear the root of the tree and those that occur near the leaves.</li>
+<li>improves readability.</li>
+</ul>
+</li>
+</ul>
+<h2 id=incorporating-continuous-valued-attributes>Incorporating Continuous-Valued Attributes</h2>
+<ul>
+<li>Restriction is &ldquo;the attributes tested in the decision nodes ofthe tree must also be discrete valued&rdquo;.</li>
+<li>This restriction can be removed.
+<ul>
+<li>dynamically defining new discrete-valued attributes that partition the continuous attribute value into a discrete set of intervals.</li>
+</ul>
+</li>
+<li>In particular, for an attribute A that is continuous-valued, the algorithm can dynamically create a new boolean attribute \(A_c\) that is true if A &lt; cand false otherwise.</li>
+<li>for the threshold c.
+<ul>
+<li>pick a threshold, c, that produces the greatest <a href=#information-gain>Information gain</a>.</li>
+</ul>
+</li>
+<li>value of c that maximizes information gain must always lie at a boundary of sorted examples according to the continuous attribute(Fayyad 1991).</li>
+</ul>
+<h2 id=alternative-measures-for-selecting-atrributes>Alternative Measures for Selecting Atrributes</h2>
+<ul>
+<li>gain ratio (Quinlan 1986).</li>
+<li>The gain ratio measure penalizes attributes having many value(Date = June 03 1996) attributes by incorporating a term, called split information, that is sensitive to how broadly and uniformly the attribute splits the data:
+<ul>
+<li>\( SplitInformation(S, A) \equiv - \sum_{i=1}^{c} \frac{|S_i|}{|S|} log_2{\frac{|S_i|}{|S|}} \)</li>
+<li>where \(S_i\) through \(S_c\) are the c subsets of examples resulting from partitioning S by the c-valued attribute A.</li>
+</ul>
+</li>
+<li>SplitInformation is actually the entropy of S with respect to the values of attribute A.</li>
+<li>The GainRatio measure is defined in terms of the earlier Gain measure, as well as this Splitlnformation, as follows
+<ul>
+<li>\( GainRatio(S, A) \equiv \frac{Gain(S,A)}{SplitInformation(S,A)} \)</li>
+</ul>
+</li>
+<li>SplitInformation term discourages the selection of attributes with many uniformly distributed values.</li>
+</ul>
+<h2 id=handling-training-examples-with-missing-attribute-values>Handling Training Examples with Missing Attribute Values</h2>
+<ul>
+<li>Use training example anywat, sort through tree
+<ul>
+<li>If node n tests A, assign most commom value of A among other examples sorted to node n</li>
+<li>Assign most common value of A among other examples with same target value</li>
+<li>Assign probalility of \(p_i\) to each posssible value \(v_i\) of A
+<ul>
+<li>assign fraction of \(p_i\) of example to each descendant in tree</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>classify new example in similar fashion</li>
+</ul>
+<h2 id=handling-attributes-with-differing-costs>Handling Attributes With Differing Costs</h2>
+<ul>
+<li>prefer decision trees that use low-cost attributes where possible, relying on high-cost attributes only when needed to produce reliable classifications.</li>
+<li>Replace gain by
+<ul>
+<li>Tan and Schlimmer(1990) and Tan(1993)
+<ul>
+<li>\( \frac{Gain^2(S,A)}{Cost(A)} \)</li>
+<li>Can be applied to a robot perception task</li>
+</ul>
+</li>
+<li>Nunez(1998)
+<ul>
+<li>\( \frac{2^{Gain(S,A)} - 1}{(Cost(A) + 1)^w} \)</li>
+<li>where \( w \in [0,1] \) is a constant that determines the relative importance of cost versus information gain.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<p style=font-size:1.65em;text-align:center>
+<a href=/blogs/notes/2021-05-31-03-54-38z-edge_filters/>&#8678;</a>
+<a href=/blogs/notes/2021-06-03-11-07-01z-inductive_bias/>&#8680;</a>
+</p>
+<hr>
+<div class=bl-section>
+<h4>Links to this note</h4>
+<div class=backlinks>
+<ul>
+<li><a href=/blogs/notes/2021-05-26-11-31-31z-neural_network/>neural network</a></li>
+</ul>
+</div>
+</div>
+<hr>
+<footer>
+<main>
+<h3>Comments</h3>
+<script src=https://utteranc.es/client.js repo=utsavdarlami/blogs issue-term=pathname label=comment theme=github-light crossorigin=anonymous async></script>
+</main>
+</footer>
+</article>
+</main>
+<footer>
+</footer>
+</body>
+</html>
