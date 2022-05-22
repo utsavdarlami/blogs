@@ -16,3 +16,5 @@ This blog is where I keep track of my learning notes. The majority of the blogs 
 Contact :
 - mail : utsavdarlami17@gmail.com
 - [Github](https://github.com/utsavdarlami)
+
+<script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=iGhgs_FeL8jQzclLNoIyQ-CGdZgOowIUW4N4_NqVu9c&cl=ffffff&w=a"></script>

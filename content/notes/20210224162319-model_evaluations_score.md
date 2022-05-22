@@ -2,7 +2,7 @@
 title = "ML Model Evaluation"
 author = ["felladog"]
 date = 2021-02-24T16:23:00+05:45
-lastmod = 2021-07-13T21:17:02+05:45
+lastmod = 2022-02-06T15:36:55+05:45
 tags = ["accuracy", "f1 score", "dice score", "precision", "recall"]
 categories = ["Machine Learning"]
 draft = false
@@ -13,11 +13,12 @@ draft = false
 -   references
     -   To Read:
         -   <https://towardsdatascience.com/handling-imbalanced-datasets-in-machine-learning-7a0e84220f28>
+        -   <https://datascience.stackexchange.com/questions/15989/micro-average-vs-macro-average-performance-in-a-multiclass-classification-settin>
 -   questions
 
 ---
 
-[ml](20210119123811-machine_learning.md) model evaluation methods
+[ml]({{<relref "../../Documents/org-notes/20210119123811-machine_learning.md#" >}}) model evaluation methods
 
 
 ## Classfication {#classfication}

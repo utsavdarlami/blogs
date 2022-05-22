@@ -2,7 +2,7 @@
 title = "image filtering"
 author = ["felladog"]
 date = 2021-05-28T17:47:00+05:45
-lastmod = 2021-07-13T21:55:10+05:45
+lastmod = 2022-02-26T15:30:43+05:45
 tags = ["convolution", "correlation", "filters", "gaussian", "median", "non-local", "bilateral", "BM3D"]
 categories = ["image processing"]
 draft = false
@@ -44,7 +44,7 @@ Modify image pixels based on some function of a local neighbourhood of each pixe
 -   The entries in the weight kernel or mask h(k, l) are often called the filter coefficients.
 -   The above **correlation** operator can be more compactly notated as
     -   \\(g = f \otimes h\\)
--   Correlation can be used for [Template Matching]({{<relref "2021-07-05--14-03-49Z--object_detection.md" >}})
+-   Correlation can be used for [Template Matching]({{<relref "../../Documents/org-notes/2021-07-05--14-03-49Z--object_detection.md#using-template-matching" >}})
 
 -   Variant of above formula is
     -   \\(g(i, j) =  \sum\_{k,l}{f(i - k, j - l)h(k, l)}\\)
@@ -61,7 +61,7 @@ Modify image pixels based on some function of a local neighbourhood of each pixe
 
 ### Gaussian Filter/Blur {#gaussian-filter-blur}
 
--   good for [denoising]({{<relref "2021-04-10--04-25-11Z--image_processing.md" >}}) normally/gaussian distributed noise
+-   good for [denoising]({{<relref "../../Documents/org-notes/2021-04-10--04-25-11Z--image_processing.md#denoising" >}}) normally/gaussian distributed noise
 
 {{< figure src="/ox-hugo/2021-05-30_13-23-25_screenshot.png" caption="Figure 1: from cornell CV lecture" width="600" height="350" target="/blogs" >}}
 
@@ -76,7 +76,7 @@ g_img2 = skimage.filters.gaussian(img, sigma=1, mode='constant', cval=0.0)
 ## Non linear filters {#non-linear-filters}
 
 
-### [median]({{<relref "2021-05-29--04-28-46Z--statistics.md" >}}) filter {#median--2021-05-29-04-28-46z-statistics-dot-md--filter}
+### [median]({{<relref "../../Documents/org-notes/2021-05-29--04-28-46Z--statistics.md#terms" >}}) filter {#median--dot-dot-dot-dot-documents-org-notes-2021-05-29-04-28-46z-statistics-dot-md--filter}
 
 -   for denoising the salt and pepper noise
 -   Replace each pixel with MEDIAN value of all pixels in neighbourhood
@@ -99,7 +99,7 @@ median_skimage = median(img, disk(3), mode='constant', cval=0.0)
 ```
 
 
-### [entropy]({{<relref "2021-03-06--03-56-06Z--entropy.md" >}}) filter {#entropy--2021-03-06-03-56-06z-entropy-dot-md--filter}
+### [entropy]({{<relref "../../Documents/org-notes/2021-03-06--03-56-06Z--entropy.md#" >}}) filter {#entropy--dot-dot-dot-dot-documents-org-notes-2021-03-06-03-56-06z-entropy-dot-md--filter}
 
 The entropy filter can detect subtle variations in the local gray level distribution. It is usually used to classify textures, a certain texture might have a certain entropy as certain patterns repeat themselves in approximately certain ways.
 
@@ -232,7 +232,7 @@ unsharped_img = unsharp_mask(img, radius=3, amount=1.0)
 ```
 
 
-## [Edge Filters]({{<relref "2021-05-31--03-54-38Z--edge_filters.md" >}}) {#edge-filters--2021-05-31-03-54-38z-edge-filters-dot-md}
+## [Edge Filters]({{<relref "../../Documents/org-notes/2021-05-31--03-54-38Z--edge_filters.md#" >}}) {#edge-filters--dot-dot-dot-dot-documents-org-notes-2021-05-31-03-54-38z-edge-filters-dot-md}
 
 
 ## Ridge filters {#ridge-filters}
@@ -273,7 +273,7 @@ unsharped_img = unsharp_mask(img, radius=3, amount=1.0)
 
 ## Discrete Fourier Transform {#discrete-fourier-transform}
 
--   [dft\_in\_image]({{<relref "2021-07-04--14-06-19Z--dft_in_image.md" >}})
+-   [dft\_in\_image]({{<relref "../../Documents/org-notes/2021-07-04--14-06-19Z--dft_in_image.md#" >}})
 
 
 ## In python {#in-python}

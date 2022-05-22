@@ -2,7 +2,7 @@
 title = "text-preprocessing"
 author = ["felladog"]
 date = 2021-03-31T12:57:00+05:45
-lastmod = 2021-07-13T20:13:45+05:45
+lastmod = 2021-12-11T14:29:40+05:45
 tags = ["bag of words", "TF-IDF"]
 categories = ["NLP", "data preprocessing"]
 draft = false
@@ -17,77 +17,162 @@ draft = false
 
 ---
 
+Ways to preprocess text before [Feature Extraction in NLP]({{<relref "20211211110611-feature_extraction_in_nlp.md#" >}})
 
-## Bag of Words {#bag-of-words}
+When preprocessing, we can perform the following:
 
-Bag of word approach, it totally ignores the order of words and simply uses word counts as their basis. For each word in the post, its occurrence is counted and noted in a vector. Not surprisingly, this step is also called vectorization. The vector is typically huge as it contains as many elements as words occur in the whole dataset.
+1.  Eliminate handles and URLs
+2.  Tokenize the string into words.
+3.  Remove stop words like "and, is, a, on, etc."
+4.  [Stemming](#stemming) or convert every word to its stem.
+    -   Like dancer, dancing, danced, becomes 'danc'. You can use porter stemmer to take care of this.
+5.  Convert all your words to lower case.
 
-Take, for instance, two example posts with the following word counts:
+For example
 
-| Word     | Occurrences in Post 1 | Occurrences in post 2 |
-|----------|-----------------------|-----------------------|
-| disk     | 1                     | 1                     |
-| format   | 1                     | 1                     |
-| how      | 1                     | 0                     |
-| hard     | 1                     | 1                     |
-| my       | 1                     | 0                     |
-| problems | 0                     | 1                     |
-| to       | 1                     | 0                     |
+-   tweet
 
-The columns occurrences in post 1 and occurrences in post 2 can now be treated as
-simple vectors.
+    ```nil
+    @YMourri and @AndrewYNg are tuning a GREAT AI model at https://deeplearning.ai!!!
+    ```
+-   After preprocessing becomes
+
+    ```nil
+    [tun,great,ai,model]
+    ```
+
+    Hence we can see how we eliminated handles, tokenized it into words, removed stop words, performed stemming, and converted everything to lower case.
 
 
-### Creating Bag of words using Sklearn {#creating-bag-of-words-using-sklearn}
+## Stemming {#stemming}
+
+Stemming is the process of converting a word to its most general form, or stem. This helps in reducing the size of our vocabulary.
+
+Consider the words:
+
+-   **learn**
+-   **learn** ing
+-   **learn** ed
+-   **learn** t
+
+All these words are stemmed from its common root **learn**. However, in some cases, the stemming process produces words that are not correct spellings of the root word. For example, **happi** and **sunni**. That's because it chooses the most common stem for related words. For example, we can look at the set of words that comprises the different forms of happy:
+
+-   **happ** y
+-   **happi** ness
+-   **happi** er
+
+We can see that the prefix **happi** is more commonly used. We cannot choose **happ** because it is the stem of unrelated words like **happen**.
+
+NLTK has different modules for stemming and we will be using the [PorterStemmer](<https://www.nltk.org/api/nltk.stem.html#module-nltk.stem.porter>) module which uses the [Porter Stemming Algorithm](<https://tartarus.org/martin/PorterStemmer/>). Let's see how we can use it in the cell below.
+
+
+## Code {#code}
 
 ```python
-from sklearn.feature_extraction.text import CountVectorizer
-vectorizer = CountVectorizer(min_df=1)
-content = ["How to format my hard disk", " Hard disk format problems "]
-X  = vectorizer.fit_transform(content)
-print(vectorizer.get_feature_names())
-print("vectors from post 1 and 2")
-print(X.toarray().transpose())
+import nltk                                # Python library for NLP
+from nltk.corpus import twitter_samples    # sample Twitter dataset from NLTK
+import matplotlib.pyplot as plt            # library for visualization
+import random
 ```
 
-```text
-['disk', 'format', 'hard', 'how', 'my', 'problems', 'to']
-vectors from post 1 and 2
-[[1 1]
- [1 1]
- [1 1]
- [1 0]
- [1 0]
- [0 1]
- [1 0]]
+-   Download stopwords from NLTK
+
+<!--listend-->
+
+```python
+nltk.download('stopwords')
+# download the stopwords from NLTK
+```
+
+-   Imports
+
+<!--listend-->
+
+```python
+import re                                  # library for regular expression operations
+import string                              # for string operations
+
+from nltk.corpus import stopwords          # module for stop words that come with NLTK
+from nltk.stem import PorterStemmer        # module for stemming
+from nltk.tokenize import TweetTokenizer   # module for tokenizing strings
 ```
 
 
-## TF-IDF {#tf-idf}
+### Remove hyperlinks, Twitter marks and styles {#remove-hyperlinks-twitter-marks-and-styles}
 
-Counting term frequencies for every post and in addition discount those that appear in many posts. In other words, we want a high value for a given term in a given value, if that term occurs often in that particular post and very seldom anywhere else.
-TF stands for the counting part, while IDF factors in the discounting.
+```python
+tweet2 = re.sub(r'^RT[\s]+', '', tweet)
 
+# remove hyperlinks
+tweet2 = re.sub(r'https?://[^\s\n\r]+', '', tweet2)
 
-### How to Compute: {#how-to-compute}
+# remove hashtags
+# only removing the hash # sign from the word
+tweet2 = re.sub(r'#', '', tweet2)
 
-Typically, the tf-idf weight is composed by two terms: the first computes the normalized Term Frequency (TF), aka. the number of times a word appears in a document, divided by the total number of words in that document; the second term is the Inverse Document Frequency (IDF), computed as the logarithm of the number of the documents in the corpus divided by the number of documents where the specific term appears.
-
-
-#### TF {#tf}
-
-Term Frequency, which measures how frequently a term occurs in a document. Since every document is different in length, it is possible that a term would appear much more times in long documents than shorter ones. Thus, the term frequency is often divided by the document length (aka. the total number of terms in the document) as a way of normalization:
-
--   TF(t) = (Number of times term t appears in a document) / (Total number of terms in the document).
+print(tweet2) #
+```
 
 
-#### IDF {#idf}
+### Tokenize the string {#tokenize-the-string}
 
-Inverse Document Frequency, which measures how important a term is. While computing TF, all terms are considered equally important. However it is known that certain terms, such as "is", "of", and "that", may appear a lot of times but have little importance. Thus we need to weigh down the frequent terms while scale up the rare ones, by computing the following:
+```python
+# instantiate tokenizer class
+tokenizer = TweetTokenizer(preserve_case=False, strip_handles=True,
+			       reduce_len=True)
 
--   IDF(t) = log\_e(Total number of documents / Number of documents with term t in it).
+# tokenize tweets
+tweet_tokens = tokenizer.tokenize(tweet2)
+
+print()
+print('Tokenized string:')
+print(tweet_tokens)
+```
 
 
-### Example: {#example}
+### Stop words and punctuation {#stop-words-and-punctuation}
 
-Consider a document containing 100 words wherein the word cat appears 3 times. The term frequency (i.e., tf) for cat is then (3 / 100) = 0.03. Now, assume we have 10 million documents and the word cat appears in one thousand of these. Then, the inverse document frequency (i.e., idf) is calculated as log(10,000,000 / 1,000) = 4. Thus, the Tf-idf weight is the product of these quantities: 0.03 \* 4 = 0.12.
+```python
+#Import the english stop words list from NLTK
+stopwords_english = stopwords.words('english')
+
+print('Stop words\n')
+print(stopwords_english)
+
+print('\nPunctuation\n')
+print(string.punctuation)
+```
+
+-   Removing stop words and punctuation
+
+<!--listend-->
+
+```python
+tweets_clean = []
+
+for word in tweet_tokens: # Go through every word in your tokens list
+    if (word not in stopwords_english and  # remove stopwords
+	word not in string.punctuation):  # remove punctuation
+	tweets_clean.append(word)
+
+print('removed stop words and punctuation:')
+print(tweets_clean)
+```
+
+
+### Stemming {#stemming}
+
+```python
+# Instantiate stemming class
+stemmer = PorterStemmer()
+
+# Create an empty list to store the stems
+tweets_stem = []
+
+for word in tweets_clean:
+    stem_word = stemmer.stem(word)  # stemming word
+    tweets_stem.append(stem_word)  # append to the list
+
+print('stemmed words:')
+print(tweets_stem)
+```

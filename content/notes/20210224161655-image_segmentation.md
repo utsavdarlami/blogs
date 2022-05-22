@@ -2,7 +2,7 @@
 title = "image segmentation"
 author = ["felladog"]
 date = 2021-02-24T16:16:00+05:45
-lastmod = 2021-07-20T18:08:11+05:45
+lastmod = 2021-11-08T12:16:25+05:45
 tags = ["image"]
 categories = ["Machine Learning"]
 draft = false
@@ -18,40 +18,52 @@ draft = false
 ---
 
 
-## Using Classical Approach {#using-classical-approach}
+## Types of image segmentation {#types-of-image-segmentation}
 
 
-### [Histogram Based Segmentation]({{<relref "2021-07-04--16-24-59Z--histogram_based_segmentation.md" >}}) {#histogram-based-segmentation--2021-07-04-16-24-59z-histogram-based-segmentation-dot-md}
+### Semantic segmentation {#semantic-segmentation}
 
 
-### [thresholding]({{<relref "2021-05-27--05-20-06Z--thresholding.md" >}}) {#thresholding--2021-05-27-05-20-06z-thresholding-dot-md}
+### Instance segmentation {#instance-segmentation}
 
 
-### Random Walker Segmentation {#random-walker-segmentation}
+## Apporaches for segmentation {#apporaches-for-segmentation}
 
 
-### Watershed Segmentation {#watershed-segmentation}
+### Using Classical Approach {#using-classical-approach}
 
 
-### Graph based segmentation {#graph-based-segmentation}
+#### [Histogram Based Segmentation]({{<relref "2021-07-04--16-24-59Z--histogram_based_segmentation.md#" >}}) {#histogram-based-segmentation--2021-07-04-16-24-59z-histogram-based-segmentation-dot-md}
+
+
+#### [thresholding]({{<relref "2021-05-27--05-20-06Z--thresholding.md#" >}}) {#thresholding--2021-05-27-05-20-06z-thresholding-dot-md}
+
+
+#### Random Walker Segmentation {#random-walker-segmentation}
+
+
+#### Watershed Segmentation {#watershed-segmentation}
+
+
+#### Graph based segmentation {#graph-based-segmentation}
 
 -   </home/felladog/Downloads/CV_Nptel/W2/DL4CV_Week02_Part05.pdf>
 -   <https://youtu.be/0HbRnFTOOms?t=680>
 
 
-## Using Unsupervised Approach {#using-unsupervised-approach}
+### Using Unsupervised Approach {#using-unsupervised-approach}
 
 
-### [Gaussian Mixture Model]({{<relref "2021-04-13--13-20-35Z--gaussian_mixture_model.md" >}}) {#gaussian-mixture-model--2021-04-13-13-20-35z-gaussian-mixture-model-dot-md}
+#### [Gaussian Mixture Model]({{<relref "2021-04-13--13-20-35Z--gaussian_mixture_model.md#" >}}) {#gaussian-mixture-model--2021-04-13-13-20-35z-gaussian-mixture-model-dot-md}
 
 
-### [Kmeans Clustering]({{<relref "2021-05-23--03-19-46Z--kmeans_clustering.md" >}}) {#kmeans-clustering--2021-05-23-03-19-46z-kmeans-clustering-dot-md}
+#### [Kmeans Clustering]({{<relref "2021-05-23--03-19-46Z--kmeans_clustering.md#" >}}) {#kmeans-clustering--2021-05-23-03-19-46z-kmeans-clustering-dot-md}
 
 
-## Using Deep Learning {#using-deep-learning}
+### Using Deep Learning {#using-deep-learning}
 
 
-### [UNET]({{<relref "2021-05-26--11-48-24Z--unet.md" >}}) {#unet--2021-05-26-11-48-24z-unet-dot-md}
+#### [UNET]({{<relref "2021-05-26--11-48-24Z--unet.md#" >}}) {#unet--2021-05-26-11-48-24z-unet-dot-md}
 
 
 ## Image Segmentation Loss/Evaluation Method {#image-segmentation-loss-evaluation-method}
@@ -71,7 +83,7 @@ draft = false
     = \\(\frac{TP}{TP + FP + FN}\\)
 
 
-### [Dice Score]({{<relref "20210224162319-model_evaluations_score.md" >}}) {#dice-score--20210224162319-model-evaluations-score-dot-md}
+### [Dice Score]({{<relref "20210224162319-model_evaluations_score.md#" >}}) {#dice-score--20210224162319-model-evaluations-score-dot-md}
 
 -   Easy to differentiate
 -   For Image = \\(\frac{2\*\sum{\hat{y}\*y}} {\sum{\hat{y} + y}}\\)

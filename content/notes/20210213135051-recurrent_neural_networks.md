@@ -2,7 +2,7 @@
 title = "Recurrent Neural Networks"
 author = ["felladog"]
 date = 2021-03-02T12:40:00+05:45
-lastmod = 2021-07-13T21:16:33+05:45
+lastmod = 2021-09-13T12:29:00+05:45
 tags = ["RNN", "Sequence Models"]
 categories = ["Deep Learning"]
 draft = false
@@ -18,12 +18,14 @@ draft = false
     -   <https://deeplearning.cs.cmu.edu/S20/document/recitation/recitation-7.pdf>
     -   <http://cs231n.stanford.edu/slides/2017/cs231n%5F2017%5Flecture10.pdf>
     -   <https://www.youtube.com/watch?v=6niqTuYFZLQ>
+    -   <https://github.com/fastai/fastbook/blob/master/12%5Fnlp%5Fdive.ipynb> [ fast ai nlp dive rnn archi]
 
     -   <http://ethen8181.github.io/machine-learning/deep%5Flearning/rnn/1%5Fpytorch%5Frnn.html#Recurrent-Neural-Network-(RNN)> [Main reference]
     -   <https://medium.com/ecovisioneth/building-deep-multi-layer-recurrent-neural-networks-with-star-cell-2f01acdb73a7> [Multi Layer]
     -   <https://towardsdatascience.com/pytorch-basics-how-to-train-your-neural-net-intro-to-rnn-cb6ebc594677>
     -   <https://www.jeremyjordan.me/introduction-to-recurrent-neural-networks/>
     -   <https://towardsdatascience.com/pytorch-basics-how-to-train-your-neural-net-intro-to-rnn-cb6ebc594677>
+    -   [Sebastian Raschka Character Generation using lstm cell pytorch](https://github.com/rasbt/stat453-deep-learning-ss21/blob/main/L19/character-rnn/01%5Fchar-rnn%5Flstmcell-ver.ipynb)
 
 ---
 

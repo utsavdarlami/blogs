@@ -2,7 +2,7 @@
 title = "machine learning"
 author = ["felladog"]
 date = 2021-01-17T17:28:00+05:45
-lastmod = 2021-08-11T11:10:50+05:45
+lastmod = 2022-02-10T22:03:35+05:45
 tags = ["ml"]
 categories = ["machine learning"]
 draft = false
@@ -32,12 +32,17 @@ Machine learning is a subfield of AI that studies the ability to improve perform
     -   Training experience E: playing practice games against itself
 
 
+## Questions {#questions}
+
+-   If model deployed in the prod env is broken, what would be your approach to debug it?
+
+
 ## Supervised {#supervised}
 
 -   [Lecture 1: Supervised Learning](http://www.cs.cornell.edu/courses/cs4780/2018fa/lectures/lecturenote01%5FMLsetup.html)
 
 
-### [regression]({{<relref "2021-05-26--11-12-25Z--regression.md" >}}) {#regression--2021-05-26-11-12-25z-regression-dot-md}
+### [regression]({{<relref "../../Documents/org-notes/2021-05-26--11-12-25Z--regression.md#" >}}) {#regression--dot-dot-dot-dot-documents-org-notes-2021-05-26-11-12-25z-regression-dot-md}
 
 
 ### classfication {#classfication}
@@ -46,13 +51,13 @@ Machine learning is a subfield of AI that studies the ability to improve perform
 ## Unsupervised {#unsupervised}
 
 
-### [clustering]({{<relref "2021-05-26--11-13-54Z--clustering.md" >}}) {#clustering--2021-05-26-11-13-54z-clustering-dot-md}
+### [clustering]({{<relref "../../Documents/org-notes/2021-05-26--11-13-54Z--clustering.md#" >}}) {#clustering--dot-dot-dot-dot-documents-org-notes-2021-05-26-11-13-54z-clustering-dot-md}
 
 
-### [dimensionality reduction]({{<relref "2021-05-26--11-16-28Z--dimensionality_reduction.md" >}}) {#dimensionality-reduction--2021-05-26-11-16-28z-dimensionality-reduction-dot-md}
+### [dimensionality reduction]({{<relref "../../Documents/org-notes/2021-05-26--11-16-28Z--dimensionality_reduction.md#" >}}) {#dimensionality-reduction--dot-dot-dot-dot-documents-org-notes-2021-05-26-11-16-28z-dimensionality-reduction-dot-md}
 
 
-## [ML Model Evaluation]({{<relref "20210224162319-model_evaluations_score.md" >}}) {#ml-model-evaluation--20210224162319-model-evaluations-score-dot-md}
+## [ML Model Evaluation]({{<relref "../../Documents/org-notes/20210224162319-model_evaluations_score.md#" >}}) {#ml-model-evaluation--dot-dot-dot-dot-documents-org-notes-20210224162319-model-evaluations-score-dot-md}
 
 
 ## Graph Based {#graph-based}
