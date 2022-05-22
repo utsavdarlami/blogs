@@ -17,4 +17,9 @@ Contact :
 - mail : utsavdarlami17@gmail.com
 - [Github](https://github.com/utsavdarlami)
 
-<script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=iGhgs_FeL8jQzclLNoIyQ-CGdZgOowIUW4N4_NqVu9c&cl=ffffff&w=a"></script>
+{{< 
+figure 
+link="https://clustrmaps.com/site/1bok3" 
+caption="Visit Tracker" 
+src="//www.clustrmaps.com/map_v2.png?d=iGhgs_FeL8jQzclLNoIyQ-CGdZgOowIUW4N4_NqVu9c&cl=ffffff" 
+>}}
