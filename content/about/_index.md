@@ -6,7 +6,7 @@ title: About Me
 
 Hi, I'm Utsav Darlami , *felladog*. 
 
-RanDumb Computer Science Undergraduate Student from  Kathmandu University, Nepal
+RanDumb dev!
 
 This blog is where I keep track of my learning notes. The majority of the blogs will be rough drafts and incomplete notes.
 
