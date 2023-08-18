@@ -16,6 +16,7 @@ This blog is where I keep track of my learning notes. The majority of the blogs 
 Contact :
 - mail : utsavdarlami17@gmail.com
 - [Github](https://github.com/utsavdarlami)
+- [CV](/blogs/misc/UtsavDarlami_CV1.pdf)
 
 {{< 
 figure 
