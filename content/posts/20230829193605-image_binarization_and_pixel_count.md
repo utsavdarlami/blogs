@@ -2,9 +2,9 @@
 title = "image binarization and pixel count"
 author = ["felladog"]
 date = 2023-08-29T19:36:00+05:45
-lastmod = 2023-08-29T21:33:56+05:45
+lastmod = 2023-08-29T21:37:52+05:45
 tags = ["binarization", "pixel count", "thresholding", "gaussian"]
-categories = ["image", "processing"]
+categories = ["image processing"]
 draft = false
 +++
 
