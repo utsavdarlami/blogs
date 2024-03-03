@@ -2,7 +2,7 @@
 title = "image filtering"
 author = ["felladog"]
 date = 2021-05-28T17:47:00+05:45
-lastmod = 2022-02-26T15:30:43+05:45
+lastmod = 2024-03-03T20:55:59+05:45
 tags = ["convolution", "correlation", "filters", "gaussian", "median", "non-local", "bilateral", "BM3D"]
 categories = ["image processing"]
 draft = false
@@ -15,11 +15,11 @@ draft = false
     -   Reading
         -   <https://vincmazet.github.io/ftip/convolution.html>
         -   <https://nptel.ac.in/courses/106/106/106106224/> [IIT Madras]
-        -   [Cornell CV Lecture on Filter](https://www.cs.cornell.edu/courses/cs5670/2020sp/lectures/lec01%5Ffilter.pdf)
+        -   [Cornell CV Lecture on Filter](https://www.cs.cornell.edu/courses/cs5670/2020sp/lectures/lec01_filter.pdf)
         -   <https://szeliski.org/Book/> [Book Chapter 3]
-        -   [Non-local means denoising for preserving textures](https://scikit-image.org/docs/dev/auto%5Fexamples/filters/plot%5Fnonlocal%5Fmeans.html)
+        -   [Non-local means denoising for preserving textures](https://scikit-image.org/docs/dev/auto_examples/filters/plot_nonlocal_means.html)
     -   To read:
-        -   <https://www.cs.tut.fi/~foi/papers/ICIP2019%5FYmir.pdf> [BM3D]
+        -   <https://www.cs.tut.fi/~foi/papers/ICIP2019_Ymir.pdf> [BM3D]
         -   <https://stackoverflow.com/questions/40596026/what-does-entropy-mean-in-this-context>
 -   Questions :
 
@@ -44,7 +44,7 @@ Modify image pixels based on some function of a local neighbourhood of each pixe
 -   The entries in the weight kernel or mask h(k, l) are often called the filter coefficients.
 -   The above **correlation** operator can be more compactly notated as
     -   \\(g = f \otimes h\\)
--   Correlation can be used for [Template Matching]({{<relref "../../Documents/org-notes/2021-07-05--14-03-49Z--object_detection.md#using-template-matching" >}})
+-   Correlation can be used for [Template Matching]({{< relref "2021-07-05--14-03-49Z--object_detection.md#using-template-matching" >}})
 
 -   Variant of above formula is
     -   \\(g(i, j) =  \sum\_{k,l}{f(i - k, j - l)h(k, l)}\\)
@@ -61,9 +61,9 @@ Modify image pixels based on some function of a local neighbourhood of each pixe
 
 ### Gaussian Filter/Blur {#gaussian-filter-blur}
 
--   good for [denoising]({{<relref "../../Documents/org-notes/2021-04-10--04-25-11Z--image_processing.md#denoising" >}}) normally/gaussian distributed noise
+-   good for [denoising]({{< relref "2021-04-10--04-25-11Z--image_processing.md#denoising" >}}) normally/gaussian distributed noise
 
-{{< figure src="/ox-hugo/2021-05-30_13-23-25_screenshot.png" caption="Figure 1: from cornell CV lecture" width="600" height="350" target="/blogs" >}}
+{{< figure src="/ox-hugo/2021-05-30_13-23-25_screenshot.png" caption="<span class=\"figure-number\">Figure 1: </span>from cornell CV lecture" width="600" height="350" target="/blogs" >}}
 
 ```python
 # img should be float so that operation works properly
@@ -76,7 +76,7 @@ g_img2 = skimage.filters.gaussian(img, sigma=1, mode='constant', cval=0.0)
 ## Non linear filters {#non-linear-filters}
 
 
-### [median]({{<relref "../../Documents/org-notes/2021-05-29--04-28-46Z--statistics.md#terms" >}}) filter {#median--dot-dot-dot-dot-documents-org-notes-2021-05-29-04-28-46z-statistics-dot-md--filter}
+### [median]({{< relref "2021-05-29--04-28-46Z--statistics.md#median" >}}) filter {#median--2021-05-29-04-28-46z-statistics-dot-md--filter}
 
 -   for denoising the salt and pepper noise
 -   Replace each pixel with MEDIAN value of all pixels in neighbourhood
@@ -87,7 +87,7 @@ g_img2 = skimage.filters.gaussian(img, sigma=1, mode='constant', cval=0.0)
     -   Can remove spike noise
     -   Robust to outliers, but not good for Gaussian noise
 
-{{< figure src="/ox-hugo/2021-05-29_18-01-48_screenshot.png" caption="Figure 2: from nptel [IIT Madras] CV lecture slide" width="450" height="250" target="/blogs" >}}
+{{< figure src="/ox-hugo/2021-05-29_18-01-48_screenshot.png" caption="<span class=\"figure-number\">Figure 2: </span>from nptel [IIT Madras] CV lecture slide" width="450" height="250" target="/blogs" >}}
 
 ```python
 from skimage.filters import median
@@ -99,7 +99,7 @@ median_skimage = median(img, disk(3), mode='constant', cval=0.0)
 ```
 
 
-### [entropy]({{<relref "../../Documents/org-notes/2021-03-06--03-56-06Z--entropy.md#" >}}) filter {#entropy--dot-dot-dot-dot-documents-org-notes-2021-03-06-03-56-06z-entropy-dot-md--filter}
+### [entropy]({{< relref "2021-03-06--03-56-06Z--entropy.md" >}}) filter {#entropy--2021-03-06-03-56-06z-entropy-dot-md--filter}
 
 The entropy filter can detect subtle variations in the local gray level distribution. It is usually used to classify textures, a certain texture might have a certain entropy as certain patterns repeat themselves in approximately certain ways.
 
@@ -119,28 +119,28 @@ entropy_img = entropy(img, disk(3))
 -   Output pixel value is weighted combination of neighboring pixel values:
     \\(g(i,j) = \frac{\sum\_{k,l}f(k,l) w(i,j,k,l)}{\sum\_{k,l}w(i,j,k,l)}\\)
 
-{{< figure src="/ox-hugo/2021-05-29_17-56-31_screenshot.png" caption="Figure 3: from szeliski book, chapter 3" width="600" height="300" target="/blogs" >}}
+{{< figure src="/ox-hugo/2021-05-29_17-56-31_screenshot.png" caption="<span class=\"figure-number\">Figure 3: </span>from szeliski book, chapter 3" width="600" height="300" target="/blogs" >}}
 
 -   \\(\sigma\_{d}\\) controls influence of the distant pixels.
 -   \\(\sigma\_{r}\\) controls the influence of pixels with intensity value different from center pixel intensity.
 
-{{< figure src="/ox-hugo/2021-05-29_17-57-56_screenshot.png" caption="Figure 4: from szeliski book, chapter 3" width="500" height="350" target="/blogs" >}}
+{{< figure src="/ox-hugo/2021-05-29_17-57-56_screenshot.png" caption="<span class=\"figure-number\">Figure 4: </span>from szeliski book, chapter 3" width="500" height="350" target="/blogs" >}}
 
 ```python
 bilateral_img_cv = cv2.bilateralFilter(image,
-				    d=5,
-				    sigmaColor=20,
-				    sigmaSpace=100,
-				    borderType=cv2.BORDER_CONSTANT)
+                                    d=5,
+                                    sigmaColor=20,
+                                    sigmaSpace=100,
+                                    borderType=cv2.BORDER_CONSTANT)
 
 from skimage.restoration import denoise_bilateral
 bilateral_img_sk  = denoise_bilateral(image,
-				      win_size,
-				      sigma_color=0.05,
-				      sigma_spatial=15,
-				      mode='constant',
-				      cval=0,
-				      multichannel=False)
+                                      win_size,
+                                      sigma_color=0.05,
+                                      sigma_spatial=15,
+                                      mode='constant',
+                                      cval=0,
+                                      multichannel=False)
 ```
 
 
@@ -160,11 +160,11 @@ from skimage.restoration import denoise_nl_means, estimate_sigma
 
 sigma_est = np.mean(estimate_sigma(img, multichannel=False))
 denoise_img = denoise_nl_means(img,
-			       h=1.0*sigma_est,
-			       fast_mode=True,
-			       patch_size=5,
-			       patch_distance=3,
-			       multichannel=False)
+                               h=1.0*sigma_est,
+                               fast_mode=True,
+                               patch_size=5,
+                               patch_distance=3,
+                               multichannel=False)
 ```
 
 
@@ -175,14 +175,13 @@ denoise_img = denoise_nl_means(img,
 -   The result of this filter is an image that has a minimal total variation norm, while being as close to the initial image as possible.
 -   The total variation is the L1 norm of the gradient of the image.
 -   good for normally/gaussian distributed noise
-
     ```python
     from skimage.restoration import denoise_tv_chambolle
     denoise_img_tv = denoise_tv_chambolle(img,
-    				  weight=0.1,
-    				  eps=0.0002,
-    				  n_iter_max=200,
-    				  multichannel=True)
+                                      weight=0.1,
+                                      eps=0.0002,
+                                      n_iter_max=200,
+                                      multichannel=True)
     ```
 
 
@@ -208,8 +207,8 @@ import bm3d
  All stages performs both hard thresholding and Wiener filtering.
 """
 bm3d_denoised = dm3d.bm3d(noisy_img,
-			  sigma_psd=0.2,
-			  stage_arg=bm3d.BM3DStages.ALL_STAGES)
+                          sigma_psd=0.2,
+                          stage_arg=bm3d.BM3DStages.ALL_STAGES)
 ```
 
 
@@ -220,11 +219,11 @@ bm3d_denoised = dm3d.bm3d(noisy_img,
 
 -   Sharped = Original Image + (Orginial - Gaussian Blurred Image) \* Amount
 
-{{< figure src="/ox-hugo/2021-05-30_12-56-17_screenshot.png" caption="Figure 5: from cornell CV lecture" width="500" height="400" target="/blogs" >}}
+{{< figure src="/ox-hugo/2021-05-30_12-56-17_screenshot.png" caption="<span class=\"figure-number\">Figure 5: </span>from cornell CV lecture" width="500" height="400" target="/blogs" >}}
 
-{{< figure src="/ox-hugo/2021-05-30_13-01-41_screenshot.png" caption="Figure 6: from cornell CV lecture" width="650" height="300" target="/blogs" >}}
+{{< figure src="/ox-hugo/2021-05-30_13-01-41_screenshot.png" caption="<span class=\"figure-number\">Figure 6: </span>from cornell CV lecture" width="650" height="300" target="/blogs" >}}
 
-{{< figure src="/ox-hugo/2021-05-30_13-13-43_screenshot.png" caption="Figure 7: from cornell CV lecture" width="650" height="350" target="/blogs" >}}
+{{< figure src="/ox-hugo/2021-05-30_13-13-43_screenshot.png" caption="<span class=\"figure-number\">Figure 7: </span>from cornell CV lecture" width="650" height="350" target="/blogs" >}}
 
 ```python
 from skimage.filters import unsharp_mask
@@ -232,7 +231,7 @@ unsharped_img = unsharp_mask(img, radius=3, amount=1.0)
 ```
 
 
-## [Edge Filters]({{<relref "../../Documents/org-notes/2021-05-31--03-54-38Z--edge_filters.md#" >}}) {#edge-filters--dot-dot-dot-dot-documents-org-notes-2021-05-31-03-54-38z-edge-filters-dot-md}
+## [Edge Filters]({{< relref "2021-05-31--03-54-38Z--edge_filters.md" >}}) {#edge-filters--2021-05-31-03-54-38z-edge-filters-dot-md}
 
 
 ## Ridge filters {#ridge-filters}
@@ -273,7 +272,7 @@ unsharped_img = unsharp_mask(img, radius=3, amount=1.0)
 
 ## Discrete Fourier Transform {#discrete-fourier-transform}
 
--   [dft\_in\_image]({{<relref "../../Documents/org-notes/2021-07-04--14-06-19Z--dft_in_image.md#" >}})
+-   [dft_in_image]({{< relref "2021-07-04--14-06-19Z--dft_in_image.md" >}})
 
 
 ## In python {#in-python}

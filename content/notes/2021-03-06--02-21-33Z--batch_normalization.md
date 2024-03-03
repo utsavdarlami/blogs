@@ -2,7 +2,7 @@
 title = "Batch Normalization"
 author = ["felladog"]
 date = 2021-03-06T08:06:00+05:45
-lastmod = 2021-07-13T21:17:06+05:45
+lastmod = 2024-03-03T21:33:07+05:45
 tags = ["BatchNorm", "Normalization"]
 categories = ["deep learning"]
 draft = false
@@ -11,14 +11,14 @@ draft = false
 ---
 
 -   Acknowledgement :
-    -   [d2l.ai batch normalization](https://d2l.ai/chapter%5Fconvolutional-modern/batch-norm.html)
-    -   [L11.2 How BatchNorm Works - Sebastian Raschka](https://www.youtube.com/watch?v=34PDIFvvESc&list=PLTKMiZHVd%5F2KJtIXOW0zFhFfBaJJilH51&index=83)
+    -   [d2l.ai batch normalization](https://d2l.ai/chapter_convolutional-modern/batch-norm.html)
+    -   [L11.2 How BatchNorm Works - Sebastian Raschka](https://www.youtube.com/watch?v=34PDIFvvESc&list=PLTKMiZHVd_2KJtIXOW0zFhFfBaJJilH51&index=83)
     -   <https://twitter.com/karpathy/status/1013245864570073090>
 -   To read:
-    -   [Why is batch norm becoming so unpopular](https://www.reddit.com/r/MachineLearning/comments/nnivo6/d%5Fwhy%5Fis%5Fbatch%5Fnorm%5Fbecoming%5Fso%5Funpopular/)
+    -   [Why is batch norm becoming so unpopular](https://www.reddit.com/r/MachineLearning/comments/nnivo6/d_why_is_batch_norm_becoming_so_unpopular/)
 -   Questions :
     1.  What is Normalization?
-        -   [Normalization](2021-03-06--02-35-46Z--normalization.md)
+        -   [Normalization]({{< relref "2021-03-06--02-35-46Z--normalization.md" >}})
 
 ---
 
@@ -59,10 +59,10 @@ draft = false
 
 ```python
 batch_norm = torch.nn.BatchNorm2d(num_features, # no of channels
-				  eps=1e-05, # the value used for the running_mean and running_var computation.
-				  momentum=0.1,
-				  affine=True,  # With Learnable Parameters
-				  track_running_stats=True)
+                                  eps=1e-05, # the value used for the running_mean and running_var computation.
+                                  momentum=0.1,
+                                  affine=True,  # With Learnable Parameters
+                                  track_running_stats=True)
 ```
 
 ```python
@@ -90,25 +90,27 @@ SD  = 0.999940037727356
 
 ### Implementation Notes {#implementation-notes}
 
--   BatchNorm1d(num\_of\_units\_in\_prev\_layer) for Linear Layers.
--   BatchNorm2d(prev\_out\_channels) for Conv Layers.
+-   BatchNorm1d(num_of_units_in_prev_layer) for Linear Layers.
+-   BatchNorm2d(prev_out_channels) for Conv Layers.
 -   BatchNorm can be used before or **after** the activation layer but it was initial proposed to be used before activation layer. If using Dropout, keep it after the activation layer.
--   _Use bias=False for your Linear/Conv2d layer when using BatchNorm, or conversely forget to include it for the output layer. - Andrej Karpathy_.
+-   Use `bias=False`
 
-    {{<tweet 1013245864570073090>}}
+> Use bias=False for your Linear/Conv2d layer when using BatchNorm, or conversely forget to include it for the output layer. - Andrej Karpathy.
+
+{{&lt; tweet user="karpathy" id="1013245864570073090" &gt;}}
 
 -   Toggle model.train() and model.eval() for inference.
--   Stable with larger minibatch size > (16, 32, 64)
+-   Stable with larger minibatch size &gt; (16, 32, 64)
 
 
 ## BatchNorm during prediction("Inference") {#batchnorm-during-prediction--inference}
 
 1.  [ **Preferred Way** ] Using exponentially weighted avg(moving avg) of mean and variance
-    -   running\_mean = momentum \* running\_mean + (1 - momentum) \* sample\_mean, where,
-        -   running\_mean is the mean from the previous batch
+    -   running_mean = momentum \* running_mean + (1 - momentum) \* sample_mean, where,
+        -   running_mean is the mean from the previous batch
         -   sample mean is the mean from the current batch
         -   momentum is choosed as 0.1
-    -   Similarly for variance we can calculate running\_variance
+    -   Similarly for variance we can calculate running_variance
     -   This running mean and variance will be used during the inference for scaling datapoints.
 2.  Alternatively can also use global training set mean and variacnce
 
@@ -131,4 +133,4 @@ SD  = 0.999940037727356
 
 -   Like a dropout layer, batch normalization layers have different computation results in training mode and prediction mode.
 
--   Batch normalization has many beneficial side effects, primarily that of [regularization](2021-05-26--11-28-39Z--regularization.md). On the other hand, the original motivation of reducing internal covariate shift seems not to be a valid explanation.
+-   Batch normalization has many beneficial side effects, primarily that of [regularization]({{< relref "2021-05-26--11-28-39Z--regularization.md" >}}). On the other hand, the original motivation of reducing internal covariate shift seems not to be a valid explanation.
