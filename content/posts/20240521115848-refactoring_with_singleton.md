@@ -2,7 +2,7 @@
 title = "refactoring with singleton"
 author = ["felladog"]
 date = 2024-05-21T11:58:00+05:45
-lastmod = 2024-05-28T18:34:20+05:45
+lastmod = 2024-05-29T07:02:59+05:45
 tags = ["python", "refactoring"]
 categories = ["python"]
 draft = false
@@ -81,11 +81,6 @@ print(boxes[0])
 print(state)
 ```
 
-```text
-Box(color='white', size=(0, 0), pattern='flower', state=ProcessState(box_type='generic', state={}, box_count=4))
-ProcessState(box_type='generic', state={}, box_count=4, log='')
-```
-
 On this list of boxes a list of processor would work on to create a final box. Each processor would have their own business logic which modifies the passed box or creates new box.
 
 ```python
@@ -109,7 +104,7 @@ remove_snake_pattern
 ```
 
 ```text
-<function remove_snake_pattern at 0x10b5ced30>
+<function remove_snake_pattern at 0x7fae4f2b6840>
 ```
 
 Now lets call this processor for our raw boxes
@@ -130,17 +125,17 @@ print(state)
 
 ```text
 for box flower
-State id before Process 4486205840
-State id after Process 4486205840
+State id before Process 140386633097680
+State id after Process 140386633097680
 for box bird
-State id before Process 4486205840
-State id after Process 4486205840
+State id before Process 140386633097680
+State id after Process 140386633097680
 for box snake
-State id before Process 4486205840
-State id after Process 4486205840
+State id before Process 140386633097680
+State id after Process 140386633097680
 for box dust
-State id before Process 4486205840
-State id after Process 4486205840
+State id before Process 140386633097680
+State id after Process 140386633097680
 ProcessState(box_type='generic', state={'snake': 'seen'}, box_count=4, log='Cleaned snake pattern box\n')
 ```
 
@@ -193,7 +188,7 @@ print(id(state))
 
 ```text
 ProcessStateV2(box_type='generic', state={}, box_count=0, log='')
-4486506432
+140386634458256
 ```
 
 Based on this new `ProcessState` class definition we need to slightly modify our definition of the `Box` class to truly utilize the singleton design pattern
@@ -209,11 +204,6 @@ class BoxV2:
 box = BoxV2()
 print(box)
 print(id(box.state))
-```
-
-```text
-BoxV2(color='white', size=(0, 0), pattern='flower', state=ProcessStateV2(box_type='generic', state={}, box_count=0, log=''))
-4486506432
 ```
 
 Why Initialize the ProcessState on the Box Object Initialization Now?
@@ -237,15 +227,6 @@ print(boxes[0])
 print(state)
 ```
 
-```text
-4486506432
-4486506432
-4486506432
-4486506432
-Box(color='white', size=(0, 0), pattern='flower', state=ProcessState(box_type='generic', state={}, box_count=4))
-ProcessStateV2(box_type='generic', state={}, box_count=4, log='')
-```
-
 Lets also refactor the processor to utilize new definition.
 
 ```python
@@ -267,10 +248,6 @@ def remove_snake_pattern_v2(box: BoxV2) -> BoxV2:
 remove_snake_pattern_v2
 ```
 
-```text
-<function remove_snake_pattern_v2 at 0x10b6a6670>
-```
-
 In this refactored function we can see that we have removed the explicit assignment of \`state\` to the new `Box` object. Now a dev can focus on the business logic and won't have to remember to preserve the state or copy the state before modifying it. Here `ProcessState` flows through the boxes as a global variable.
 
 Now lets call this refactor processor for our raw boxes
@@ -287,22 +264,6 @@ for box in raw_boxes:
     processed_box.append(box)
 
 print(state)
-```
-
-```text
-for box flower
-State id before Process 4486506432
-State id after Process 4486506432
-for box bird
-State id before Process 4486506432
-State id after Process 4486506432
-for box snake
-State id before Process 4486506432
-State id after Process 4486506432
-for box dust
-State id before Process 4486506432
-State id after Process 4486506432
-ProcessStateV2(box_type='generic', state={'snake': 'seen'}, box_count=4, log='Cleaned snake pattern box\n')
 ```
 
 And Done. This is how applied [singleton]({{< relref "20240521120415-design_patterns.md#singleton" >}}) to refactor for my project.
@@ -332,9 +293,9 @@ ProcessStateV2.clear()
 ```
 
 ```text
-4486216192 - ProcessStateV2(box_type='generic', state={}, box_count=0, log='new state created')
-4486216192 - ProcessStateV2(box_type='generic', state={}, box_count=0, log='new state created')
-4486262304 - ProcessStateV2(box_type='cleaned', state={}, box_count=0, log='')
+140386629460816 - ProcessStateV2(box_type='generic', state={}, box_count=0, log='new state created')
+140386629460816 - ProcessStateV2(box_type='generic', state={}, box_count=0, log='new state created')
+140386629256528 - ProcessStateV2(box_type='cleaned', state={}, box_count=0, log='')
 ```
 
 
@@ -345,7 +306,7 @@ ProcessStateV2.clear()
 
 All this changes resulted in adding more lines of code then removing (refactoring i guess).
 
-{{< figure src="/ox-hugo/2024-05-23_16-20-22_screenshot.png" >}}
+{{< figure src="/ox-hugo/2024-05-23_16-20-22_screenshot.png" caption="<span class=\"figure-number\">Figure 1: </span>Post refactoring changes" width="800" height="200" target="/blogs" >}}
 
 [^fn:1]: ["Metaprogramming in Python using Metaclasses" - Adarsh Divakaran (PyCascades 2023)](https://www.youtube.com/watch?v=-js0K7Q878c)
 [^fn:2]: [what-is-the-best-way-of-implementing-singleton-in-python](https://stackoverflow.com/questions/6760685/what-is-the-best-way-of-implementing-singleton-in-python)
