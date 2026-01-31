@@ -3,7 +3,8 @@ title = "felladog"
 theme = "blank"
 languageCode = "en"
 
-paginate = 20
+# paginate = 20
+pagerSize = 20
 
 pygmentsCodeFences = true
 pygmentsUseClasses = true
