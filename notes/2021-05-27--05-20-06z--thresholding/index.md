@@ -1,0 +1,37 @@
+
+---
+
+-   References :
+    -   <https://muthu.co/otsus-method-for-image-thresholding-explained-and-implemented/>
+
+-   Questions :
+
+---
+
+Can be used for [image segmentation]({{< relref "20210224161655-image_segmentation.md" >}})
+
+
+## multi-otsu thresholding {#multi-otsu-thresholding}
+
+-   The multi-Otsu threshold is a thresholding algorithm that is used to separate the pixels of an input image into several different classes, each one obtained according to the intensity of the gray levels within the image
+-   Multi-Otsu calculates several thresholds based on the number supplied by the user.
+-   for multi classes
+
+<!--listend-->
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+from skimage import io, img_as_ubyte
+from skimage.filters import threshold_multiotsu
+
+image = io.imread(img_path)
+
+thresholds = threshold_multiotsu(image, classes=n) # default 3
+
+regions = np.digitize(image, bins=thresholds)
+# https://numpy.org/doc/stable/reference/generated/numpy.digitize.html
+output = img_as_ubyte(regions)
+
+plt.imshow(output)
+```

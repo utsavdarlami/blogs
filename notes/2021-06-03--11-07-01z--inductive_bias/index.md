@@ -1,0 +1,24 @@
+
+---
+
+-   References :
+    -   Reading:
+        -   Tom Mitchell Lectures slides of chapter 2
+        -   Tom Mitchell, Machine Learning Chapter 2
+    -   To Read:
+        -   <https://en.wikipedia.org/wiki/Inductive%5Fbias>
+
+-   Questions :
+
+---
+_The inductive bias of a learning algorithm is the set of assumptions that the learner uses to predict outputs given inputs that it has not encountered._
+
+-   Consider a concept learning algorithm L for the set of instances X. Let c be an arbitrary concept defined over X, and let \\(D\_c\\) = {<x,c(x)>} be an arbitrary set of training examples of c. Let \\(L(x\_i, D\_c)\\) denote the classification assigned to the instance \\(x\_i\\) by L after training on the data \\(D\_c\\). The inductive bias of L is any minimal set of assertions/assumptions B such that for any target concept c and corresponding training examples \\(D\_c\\).
+    -   \\( ( \forall x\_i \in X) [ (B \land D\_c \land x\_i) \vdash L(x\_i, D\_c) ] \\)
+    -   where the notation y \\(\vdash\\)  z indicates that z follows deductively from y (i.e., that z is provable from y).
+
+
+## Fundamental Property of inductive inference {#fundamental-property-of-inductive-inference}
+
+-   a learner that makes no a priori assumptions regarding the identity of thetarget concept has no rational basis for classifying any unseen instances.
+    -   This is the futility of Bias-Free Learning
