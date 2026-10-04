@@ -22,6 +22,10 @@
       <div  style="float:left"><time>Created Date : {{ .Date.Format "2006 January 02" }}</time></div>
       <br>
       <div  style="float:left"><time>Last Modified : {{ .Lastmod.Format "2006 January 02" }}</time></div>
+      <br>
+      {{ with .OutputFormats.Get "MARKDOWN" }}
+      <div><a href="{{ .RelPermalink }}">view raw</a></div>
+      {{ end }}
       <hr>
 
       <div style="">

@@ -13,6 +13,20 @@ refLinksErrorLevel = "WARNING"
 refLinksNotFoundURL =  "/blogs/404.html"
 ignoreErrors = ["error-remote-getjson"]
 
+# Raw markdown output format (view raw link)
+[mediaTypes]
+  [mediaTypes."text/markdown"]
+    suffixes = ["md"]
+
+[outputFormats]
+  [outputFormats.MARKDOWN]
+    mediaType = "text/markdown"
+    baseName = "index"
+    isPlainText = true
+
+[outputs]
+  page = ["HTML", "MARKDOWN"]
+
 
 
 
