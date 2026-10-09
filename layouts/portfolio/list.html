@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ .Title }} | Portfolio</title>
+<meta name="description" content="{{ .Params.description }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F4F5F6;
+    --ink: #1C2330;
+    --slate: #5A6472;
+    --rule: #D4D8DE;
+    --pen: #2D4A94;
+    --measure: 44rem;
+    --margin: 21rem;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #15181D;
+      --ink: #E3E6EA;
+      --slate: #98A1AD;
+      --rule: #2B3139;
+      --pen: #9DB2EA;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font: 400 1.0625rem/1.65 "Literata", Georgia, serif;
+    font-optical-sizing: auto;
+  }
+  a { color: var(--pen); text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+  a:hover { text-decoration-thickness: 2px; }
+  a:focus-visible { outline: 2px solid var(--pen); outline-offset: 3px; border-radius: 2px; }
+  p { margin: 0; }
+
+  .page { max-width: calc(var(--margin) + var(--measure) + 4.5rem + 3rem); margin: 0 auto; padding: 2rem 1.5rem 5rem; }
+  .home { font-size: 0.9375rem; }
+
+  /* Every block is a margin column (what it is) beside a reading column (the work). */
+  .row { display: grid; grid-template-columns: var(--margin) minmax(0, var(--measure)); column-gap: 4.5rem; }
+  .row > .side { color: var(--slate); font-size: 0.9375rem; }
+
+  header.row { margin: 5rem 0 4.5rem; }
+  h1 {
+    grid-column: 2;
+    margin: 0 0 1.25rem;
+    font-size: clamp(2.75rem, 7vw, 4.25rem);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    font-variation-settings: "opsz" 72;
+  }
+  .intro { grid-column: 2; font-size: 1.1875rem; line-height: 1.55; }
+  .contact { grid-column: 2; margin-top: 1.25rem; display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; font-size: 0.9375rem; }
+
+  section.row { border-top: 1px solid var(--rule); padding: 3.5rem 0; }
+  h2 {
+    margin: 0;
+    font-size: 0.9375rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--slate);
+    position: sticky;
+    top: 1.5rem;
+    align-self: start;
+  }
+  .work { display: grid; gap: 3rem; }
+  h3 { margin: 0 0 0.35rem; font-size: 1.1875rem; font-weight: 600; line-height: 1.35; }
+  h3 a { color: inherit; text-decoration-color: var(--rule); }
+  h3 a:hover { color: var(--pen); text-decoration-color: currentColor; }
+  .when { color: var(--slate); font-size: 0.9375rem; margin-bottom: 1rem; }
+  .stack { margin-top: 0.5rem; color: var(--slate); font-style: italic; font-size: 0.9375rem; }
+  .note { margin-top: 0.5rem; color: var(--slate); font-size: 0.9375rem; }
+
+  dl { margin: 1.5rem 0 0; display: grid; gap: 1.25rem; }
+  dt { font-weight: 600; }
+  dd { margin: 0.15rem 0 0; }
+
+  .pub .authors { color: var(--slate); font-size: 0.9375rem; margin-top: 0.35rem; }
+
+  @media (max-width: 760px) {
+    .row { grid-template-columns: minmax(0, 1fr); }
+    h1, .intro, .contact { grid-column: 1; }
+    header.row { margin: 3rem 0 3rem; }
+    h2 { position: static; margin-bottom: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <a class="home" href="{{ .Site.BaseURL }}">Back to blog</a>
+
+  <header class="row">
+    <h1>{{ .Title }}</h1>
+    <p class="intro">{{ .Params.intro }}</p>
+    <p class="contact">
+      <a href="mailto:{{ .Params.email }}">{{ .Params.email }}</a>
+      <a href="{{ .Params.github }}">GitHub</a>
+    </p>
+  </header>
+
+  {{ with .Params.industry }}
+  <section class="row">
+    <h2>Industry</h2>
+    <div>
+      <h3>{{ .role }}, {{ .org }}</h3>
+      <p class="when">{{ .dates }}</p>
+      <p>{{ .summary }}</p>
+      <dl>
+        {{ range .items }}
+        <div><dt>{{ .model }}</dt><dd>{{ .text | markdownify }}</dd></div>
+        {{ end }}
+      </dl>
+      <p class="stack">{{ .stack }}</p>
+    </div>
+  </section>
+  {{ end }}
+
+  {{ range .Params.sections }}
+  <section class="row">
+    <h2>{{ .name }}</h2>
+    <div class="work">
+      {{ range .projects }}
+      <article>
+        <h3><a href="{{ .url }}">{{ .name }}</a></h3>
+        <p>{{ .text | markdownify }}</p>
+        {{ with .note }}<p class="note">{{ . }}</p>{{ end }}
+        <p class="stack">{{ .stack }}</p>
+      </article>
+      {{ end }}
+    </div>
+  </section>
+  {{ end }}
+
+  {{ with .Params.publications }}
+  <section class="row">
+    <h2>Publications and talks</h2>
+    <div class="work">
+      {{ range . }}
+      <article class="pub">
+        <h3><a href="{{ .url }}">{{ .title }}</a></h3>
+        <p>{{ .venue | markdownify }}</p>
+        {{ with .authors }}<p class="authors">{{ . | markdownify }}</p>{{ end }}
+      </article>
+      {{ end }}
+    </div>
+  </section>
+  {{ end }}
+</div>
+</body>
+</html>
