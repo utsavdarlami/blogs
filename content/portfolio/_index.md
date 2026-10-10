@@ -49,8 +49,9 @@ sections:
         stack: Python, YOLO, Streamlit, SQLite
       - name: K-means color quantization
         url: https://github.com/utsavdarlami/KMeansColorQuantization
-        text: K-means written from scratch in C++ and used to shrink an image's palette.
-        stack: C++
+        demo: https://utsavdarlami.github.io/KMeansColorQuantization/web/
+        text: K-means written from scratch in C++ and used to shrink an image's palette. Compiled to WebAssembly, so it runs in your browser on your own photos.
+        stack: C++, WebAssembly (Emscripten)
       - name: Nepali license plate recognition
         url: https://github.com/utsavdarlami/NepalLicensePlateRecognition
         text: Finds plates in video with YOLOv2, splits characters with Otsu thresholding, and reads Devanagari characters with a custom CNN at 96% accuracy.

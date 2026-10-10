@@ -78,6 +78,8 @@
   h3 a:hover { color: var(--pen); text-decoration-color: currentColor; }
   .when { color: var(--slate); font-size: 0.9375rem; margin-bottom: 1rem; }
   .stack { margin-top: 0.5rem; color: var(--slate); font-style: italic; font-size: 0.9375rem; }
+  .sep { color: var(--slate); font-weight: 400; }
+  h3 a.demo { color: var(--pen); text-decoration-color: currentColor; }
   .note { margin-top: 0.5rem; color: var(--slate); font-size: 0.9375rem; }
 
   dl { margin: 1.5rem 0 0; display: grid; gap: 1.25rem; }
@@ -130,7 +132,7 @@
     <div class="work">
       {{ range .projects }}
       <article>
-        <h3><a href="{{ .url }}">{{ .name }}</a></h3>
+        <h3><a href="{{ .url }}">{{ .name }}</a>{{ with .demo }}<span class="sep"> | </span><a class="demo" href="{{ . }}">Live demo</a>{{ end }}</h3>
         <p>{{ .text | markdownify }}</p>
         {{ with .note }}<p class="note">{{ . }}</p>{{ end }}
         <p class="stack">{{ .stack }}</p>
